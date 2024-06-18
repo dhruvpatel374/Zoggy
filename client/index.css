@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 10%,
+    rgba(0, 0, 0, 0) 90%
+  );
+  color: #f1f1f1;
+  width: 100%;
+  transition: 0.5s ease;
+  opacity: 1;
+  color: white;
+  font-size: 20px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+@layer components {
+  .container-max {
+    @apply container max-w-[1080px] w-[95%] mx-auto;
+  }
+}
