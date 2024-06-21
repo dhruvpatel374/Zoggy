@@ -13,7 +13,7 @@ const Header = () => {
   const [isSideMenuOpen, setMenu] = useState(false);
 
   return (
-    <nav className="flex justify-between px-8 items-center py-6 ">
+    <nav className="sticky top-0 z-50 bg-white flex justify-between px-8 items-center py-6 shadow-sm  ">
       <section className="flex items-center gap-4">
         <a className="text-3xl font-mono">Zoggy</a>
         <div className="hidden lg:block">
@@ -77,10 +77,10 @@ const Header = () => {
           isSideMenuOpen && "translate-x-0"
         )}
       >
-        <section className="text-black bg-white flex-col absolute right-0 top-0 h-screen p-8 gap-8 z-50 flex w-56 items-center">
+        <section className="text-black bg-white flex-col absolute right-0 top-0 h-screen p-6 gap-8 z-50 flex w-56 items-center">
           <XMarkIcon
             onClick={() => setMenu(false)}
-            className="mt-0 mb-2 w-8 h-8 flex 
+            className="mt-0 mb-2 w-12 h-12 flex 
             cursor-pointer"
           />
           <ul className="  gap-4  text-zinc-700 ">

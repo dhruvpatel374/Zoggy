@@ -15,7 +15,7 @@ const RestaurantCard = (props) => {
   } = resData?.info;
 
   return (
-    <div className="cursor-pointer ">
+    <div className="cursor-pointer 	">
       <div className="relative  -z-50">
         <img
           src={CDN_URL + cloudinaryImageId}

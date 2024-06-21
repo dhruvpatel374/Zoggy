@@ -7,11 +7,16 @@ const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("<h1>For Swiggy Restaurant Card api go to /api/res</h1>");
+});
+
 app.get("/api/res", async (req, res) => {
   try {
     const userAgent = req.headers["user-agent"];
 
-    const url = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.0948864&lng=72.5549056&page_type=MOBILE_WEB_LISTING`;
+    const url =
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.0948864&lng=72.5549056&page_type=MOBILE_WEB_LISTING";
 
     const response = await fetch(url, {
       headers: {
