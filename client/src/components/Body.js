@@ -9,6 +9,9 @@ const Body = () => {
   // const [ratingSelected, setRatingSelected] = useState(true);
   const [deliveryTimeSelected, setDeliveryTimeSelected] = useState(true);
   const [ratingHtoLSelected, setRatingHtoLSelected] = useState(true);
+  const [searchText, setSearchText] = useState("");
+
+  const [isSearchEmpty, setIsSearchEmpty] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -37,28 +40,51 @@ const Body = () => {
     setOriginalListOfRestaurant(resData);
   };
 
-  if (listOfRestaurant.length === 0) {
+  if (originalListOfRestaurant.length === 0) {
     return <Shimmer />;
   }
+
   return (
     <div className="container-max ">
-      <h1 className="my-4 font-bold text-3xl pl-5">Restaurant List</h1>
-      <div className="pl-5">
-        {/* <button
-          className={`border-2 border-gray-500 rounded-3xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 ${
-            ratingSelected ? "selected-button" : "border-orange-400"
-          }`}
+      <div className="flex gap-4 max-w-[560px] w-[95%] mx-auto m-5 h-12 lg:w-[500px]   ">
+        <input
+          type="search"
+          name="search"
+          id="search"
+          placeholder="Search for Restaurants and cuisine"
+          className="p-2 px-4 rounded-md border outline-none focus-within:border-orange-400 border-gray-200 grow"
+          value={searchText}
+          onChange={(input) => {
+            setSearchText(input.target.value);
+          }}
+        ></input>
+        <button
+          type="submit"
+          className="bg-orange-400 text-white p-2 sm:px-8 rounded-md"
           onClick={() => {
-            setRatingSelected(!ratingSelected);
-            const filteredList = listOfRestaurant.filter(
-              (restaurant) => restaurant.info.avgRating > 4
+            const filteredRestaurant = originalListOfRestaurant.filter(
+              (res) => {
+                return (
+                  res.info.name
+                    .toLowerCase()
+                    .includes(searchText.toLowerCase()) ||
+                  res.info.cuisines
+                    .join(",")
+                    .toLowerCase()
+                    .includes(searchText.toLowerCase())
+                );
+              }
             );
-            console.log(filteredList);
-            setListOfRestaurant(filteredList);
+
+            setIsSearchEmpty(filteredRestaurant.length === 0);
+            setListOfRestaurant(filteredRestaurant);
           }}
         >
-          Rating 4.0+
-        </button> */}
+          Search
+        </button>
+      </div>
+      <h1 className="my-4 font-bold text-3xl pl-5 ">Restaurant List</h1>
+      <div className="pl-5">
         <button
           className={`border-2 border-gray-500 rounded-3xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 ${
             deliveryTimeSelected ? "selected-button" : "border-orange-400"
@@ -104,6 +130,13 @@ const Body = () => {
         >
           Reset
         </button>
+      </div>
+      <div>
+        {isSearchEmpty && (
+          <div className="text-center mt-4 font-bold text-xl">
+            <p>No restaurants and cuisine found for "{searchText}" </p>
+          </div>
+        )}
       </div>
       <div className="grid  md:grid-cols-3 lg:grid-cols-4 grid-cols-1 gap-8 m-5">
         {listOfRestaurant?.map((restaurant) => (

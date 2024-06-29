@@ -11,7 +11,7 @@ import {
 import clsx from "clsx";
 const Header = () => {
   const [isSideMenuOpen, setMenu] = useState(false);
-
+  const [loginbtn, setLoginBtn] = useState("Login");
   return (
     <nav className="sticky top-0 z-50 bg-white flex justify-between px-8 items-center py-6 shadow-sm  ">
       <section className="flex items-center gap-4">
@@ -57,12 +57,16 @@ const Header = () => {
               <ShoppingBagIcon className="w-4 h-4 text-gray-700" /> Cart
             </a>
           </li>
-          <a
-            href="#"
+          <button
+            onClick={() => {
+              loginbtn === "Login"
+                ? setLoginBtn("Logout")
+                : setLoginBtn("Login");
+            }}
             className="bg-orange-400 text-white p-2 px-4 rounded-md flex items-center gap-2"
           >
-            Login
-          </a>
+            {loginbtn}
+          </button>
         </ul>
       </div>
 
@@ -117,12 +121,16 @@ const Header = () => {
               </a>
             </li>
           </ul>
-          <a
-            href="#"
-            className="bg-orange-400 text-white p-2 px-8 rounded-md flex items-center gap-2"
+          <button
+            onClick={() => {
+              loginbtn === "Login"
+                ? setLoginBtn("Logout")
+                : setLoginBtn("Login");
+            }}
+            className="bg-orange-400 text-white p-2 px-4 rounded-md flex items-center gap-2"
           >
-            Login
-          </a>
+            {loginbtn}
+          </button>
           <p className="text-sm flex items-center gap-1 ">
             <MapPinIcon className="w-4 h-4 text-gray-700" />
             Ahmedabad, Gujarat
