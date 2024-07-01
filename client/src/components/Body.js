@@ -126,6 +126,8 @@ const Body = () => {
             setDeliveryTimeSelected(true);
             setRatingHtoLSelected(true);
             setListOfRestaurant(originalListOfRestaurant);
+            setIsSearchEmpty(false);
+            setSearchText("");
           }}
         >
           Reset
@@ -134,7 +136,7 @@ const Body = () => {
       <div>
         {isSearchEmpty && (
           <div className="text-center mt-4 font-bold text-xl">
-            <p>No restaurants and cuisine found for "{searchText}" </p>
+            <p>No Restaurants and Cuisine found for "{searchText}" </p>
           </div>
         )}
       </div>
