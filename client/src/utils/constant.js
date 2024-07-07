@@ -8,7 +8,7 @@ export const SWIGGY_API = "https://food-delivery-app-1-nol5.onrender.com";
 
 export let CORS_PROXY_URL = "http://localhost:3001/api/res";
 
-export const MENU_API = "http://localhost:3001/api/menu";
+export const MENU_API = "https://food-delivery-app-1-nol5.onrender.com/api/menu";
 
 export const City = [
   {
