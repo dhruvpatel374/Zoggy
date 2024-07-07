@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import RestaurantInfo from "./RestaurantInfo";
 import RestaurantMenuCard from "./RestaurantMenuCard";
 import { MENU_API } from "../utils/constant";
+import ShimmerRestaurant from "../utils/ShimmerRestaurant";
 import axios from "axios";
 const RestaurantMenu = () => {
   const { restaurantId } = useParams();
@@ -32,8 +33,14 @@ const RestaurantMenu = () => {
   // object►data►cards►4►groupedCard►cardGroupMap►REGULAR►cards►2►card►card►categories►0►itemCards►0►card►info►
   return (
     <div className="container-md my-8 mx-8">
-      <RestaurantInfo info={restaurant?.data?.cards[2]?.card?.card?.info} />
-      <RestaurantMenuCard restaurant={restaurant} />
+      {isLoading ? (
+        <ShimmerRestaurant />
+      ) : (
+        <>
+          <RestaurantInfo info={restaurant?.data?.cards[2]?.card?.card?.info} />
+          <RestaurantMenuCard restaurant={restaurant} />
+        </>
+      )}
     </div>
   );
 };
