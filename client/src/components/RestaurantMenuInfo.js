@@ -1,5 +1,5 @@
 import { StarIcon } from "@heroicons/react/24/solid";
-const RestaurantInfo = ({ info }) => {
+const RestaurantMenuInfo = ({ info }) => {
   //   const { name, sla, areaName, totalRatingsString, avgRatingString, cuisines } =
   //     info;
 
@@ -20,8 +20,8 @@ const RestaurantInfo = ({ info }) => {
         </p>
       </div>
       <div className="border rounded-md font-bold  p-2 text-sm">
-        <p className="flex-center gap-1 mb-2 text-green-500 ">
-          <StarIcon className="w-4 h-4" /> {info?.avgRatingString}
+        <p className="flex justify-center align-middle gap-1 mb-2 text-green-500 ">
+          <StarIcon className="w-4 h-4 " /> {info?.avgRatingString}
         </p>
         <p className="pt-2 border-t text-xs font-normal text-gray-500">
           {info?.totalRatingsString}
@@ -30,4 +30,4 @@ const RestaurantInfo = ({ info }) => {
     </div>
   );
 };
-export default RestaurantInfo;
+export default RestaurantMenuInfo;
