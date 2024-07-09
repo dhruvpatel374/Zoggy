@@ -55,15 +55,17 @@ const Footer = () => {
           <li className="font-light cursor-pointer text-sm p-2 ">Hyderabad</li>
           <li className="p-2">
             <button
-              className="border border-grey-500 rounded-md p-2 text-sm"
+              className="border border-grey-500 rounded-md p-2 text-sm flex align-middle gap-1 "
               onClick={() => setCity(!isCityOpen)}
             >
               589 cities
-              {isCityOpen ? (
-                <ChevronUpIcon className="w-6 h-6" />
-              ) : (
-                <ChevronDownIcon className="w-6 h-6" />
-              )}
+              <span className="inline">
+                {isCityOpen ? (
+                  <ChevronUpIcon className="w-6 h-6" />
+                ) : (
+                  <ChevronDownIcon className="w-6 h-6" />
+                )}
+              </span>
             </button>
           </li>
         </ul>

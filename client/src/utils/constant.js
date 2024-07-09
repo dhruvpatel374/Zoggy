@@ -1,12 +1,10 @@
 export const CDN_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
-export const SWIGGY_API =
-  "https://food-delivery-app-1-nol5.onrender.com/api/res";
+export const SWIGGY_API = "https://zoggy-server.vercel.app/api/res";
 // ("http://localhost:3001/api/res");
 
-export const MENU_API =
-  "https://food-delivery-app-1-nol5.onrender.com/api/menu";
+export const MENU_API = "https://zoggy-server.vercel.app/api/menu";
 // "http://localhost:3001/api/menu";
 export const City = [
   {
