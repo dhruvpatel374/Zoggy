@@ -2,8 +2,8 @@ export const CDN_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
 export const SWIGGY_API =
-  // "https://food-delivery-app-1-nol5.onrender.com/api/res";
-  "http://localhost:3001/api/res";
+  "https://food-delivery-app-1-nol5.onrender.com/api/res";
+// "http://localhost:3001/api/res";
 // "https://food-delivery-app-1-nol5.onrender.com/api/res";
 //   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.0948864&lng=72.5549056&page_type=DESKTOP_WEB_LISTING";
 
@@ -12,7 +12,9 @@ export let CORS_PROXY_URL = "http://localhost:3001/api/res";
 // export const MENU_API =
 //   // "https://food-delivery-app-1-nol5.onrender.com/api/menu";
 //   "http://localhost:3001/api/menu";
-export const MENU_API = "http://localhost:3001/api/menu";
+export const MENU_API =
+  "https://food-delivery-app-1-nol5.onrender.com/api/menu";
+// "http://localhost:3001/api/menu";
 export const City = [
   {
     id: "1",
