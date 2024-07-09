@@ -1,4 +1,4 @@
-const Shimmer = () => {
+const ShimmerRestCard = () => {
   return (
     <div className="flex flex-row">
       <div className="container-max ">
@@ -122,4 +122,4 @@ const Shimmer = () => {
   );
 };
 
-export default Shimmer;
+export default ShimmerRestCard;

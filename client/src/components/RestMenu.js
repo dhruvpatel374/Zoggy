@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import RestaurantMenuInfo from "./RestaurantMenuInfo";
-import RestaurantMenuCard from "./RestaurantMenuCard";
+import RestMenuInfo from "./RestMenuInfo";
+import RestMenuCard from "./RestMenuCard";
 import { MENU_API } from "../utils/constant";
-import ShimmerRestaurant from "../utils/ShimmerRestaurant";
+
 import axios from "axios";
+import ShimmerRestaurantInfo from "../utils/shimmer/ShimmerRestInfo";
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const [restaurant, setRestaurant] = useState(null);
@@ -29,13 +30,11 @@ const RestaurantMenu = () => {
   return (
     <div className="container-md m-8">
       {isLoading ? (
-        <ShimmerRestaurant />
+        <ShimmerRestaurantInfo />
       ) : (
         <>
-          <RestaurantMenuInfo
-            info={restaurant?.data?.cards[2]?.card?.card?.info}
-          />
-          <RestaurantMenuCard />
+          <RestMenuInfo info={restaurant?.data?.cards[2]?.card?.card?.info} />
+          <RestMenuCard />
         </>
       )}
     </div>

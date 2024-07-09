@@ -1,5 +1,5 @@
 import { CDN_URL } from "../utils/constant";
-const RestaurantMenuItem = (items) => {
+const RestMenuItem = (items) => {
   const category = items?.data;
 
   return (
@@ -43,4 +43,4 @@ const RestaurantMenuItem = (items) => {
     </div>
   );
 };
-export default RestaurantMenuItem;
+export default RestMenuItem;

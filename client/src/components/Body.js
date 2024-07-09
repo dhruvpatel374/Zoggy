@@ -1,7 +1,7 @@
-import RestaurantCard from "./RestaurantCard";
+import RestCard from "./RestCard";
 import { SWIGGY_API } from "../utils/constant";
 import { useState, useEffect } from "react";
-import Shimmer from "../utils/Shimmer";
+import ShimmerRestCard from "../utils/shimmer/ShimmerRestCard";
 import { Link } from "react-router-dom";
 
 const Body = () => {
@@ -42,7 +42,7 @@ const Body = () => {
   };
 
   if (originalListOfRestaurant.length === 0) {
-    return <Shimmer />;
+    return <ShimmerRestCard />;
   }
 
   return (
@@ -147,7 +147,7 @@ const Body = () => {
             to={"/restaurant/" + restaurant?.info?.id}
             key={restaurant?.info?.id}
           >
-            <RestaurantCard resData={restaurant} />
+            <RestCard resData={restaurant} />
           </Link>
         ))}
       </div>

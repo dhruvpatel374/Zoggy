@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 import { City } from "../utils/constant";
 import clsx from "clsx";
 const Footer = () => {
@@ -58,7 +58,12 @@ const Footer = () => {
               className="border border-grey-500 rounded-md p-2 text-sm"
               onClick={() => setCity(!isCityOpen)}
             >
-              589 cities {<ChevronDownIcon className="w-4 h-4 inline" />}
+              589 cities
+              {isCityOpen ? (
+                <ChevronUpIcon className="w-6 h-6" />
+              ) : (
+                <ChevronDownIcon className="w-6 h-6" />
+              )}
             </button>
           </li>
         </ul>

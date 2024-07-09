@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 
-import RestaurantMenuItem from "./RestaurantMenuItem";
-const RestaurantCategory = (data) => {
+import RestMenuItem from "./RestMenuItem";
+const RestCategory = (data) => {
   const [showItems, setShowItems] = useState(false);
 
   const handleClick = () => {
@@ -32,10 +32,10 @@ const RestaurantCategory = (data) => {
         <div></div>
       </div>
       <div className="my-4">
-        {showItems && <RestaurantMenuItem data={data?.data?.itemCards} />}
+        {showItems && <RestMenuItem data={data?.data?.itemCards} />}
       </div>
     </>
   );
 };
 
-export default RestaurantCategory;
+export default RestCategory;

@@ -1,8 +1,5 @@
 import { StarIcon } from "@heroicons/react/24/solid";
-const RestaurantMenuInfo = ({ info }) => {
-  //   const { name, sla, areaName, totalRatingsString, avgRatingString, cuisines } =
-  //     info;
-
+const RestMenuInfo = ({ info }) => {
   return (
     <div className="flex justify-between items-center pb-4 border-b border-dashed">
       <div>
@@ -30,4 +27,4 @@ const RestaurantMenuInfo = ({ info }) => {
     </div>
   );
 };
-export default RestaurantMenuInfo;
+export default RestMenuInfo;

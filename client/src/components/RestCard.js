@@ -1,6 +1,6 @@
 import { StarIcon } from "@heroicons/react/24/solid";
 import { CDN_URL } from "../utils/constant";
-const RestaurantCard = (props) => {
+const RestCard = (props) => {
   const { resData } = props;
   // sohrtcut if we don't want to writee resData.data here
   const {
@@ -53,4 +53,4 @@ const RestaurantCard = (props) => {
   );
 };
 
-export default RestaurantCard;
+export default RestCard;
