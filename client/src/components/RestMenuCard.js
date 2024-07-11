@@ -4,12 +4,12 @@ import useRestMenu from "../utils/useRestMenu";
 import RestCategory from "./RestCategory";
 import ShimmerRestMenu from "../utils/shimmer/ShimmerRestMenu";
 
-const RestMenu = () => {
+const RestMenuCard = () => {
   const { resId } = useParams();
 
   const resInfo = useRestMenu(resId); // Custom Hooks
 
-  if (resInfo === null) return <ShimmerRestMenu />;
+  if (!resInfo) return <ShimmerRestMenu />;
 
   const itemCards =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
@@ -18,7 +18,7 @@ const RestMenu = () => {
     resInfo?.cards[2]?.card?.card?.info;
 
   const category = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-
+  console.log(category);
   const categories = category?.filter(
     (c) =>
       c?.card?.card?.["@type"] ==
@@ -28,8 +28,8 @@ const RestMenu = () => {
   console.log(categories);
   return (
     <div>
-      <div className="">
-        {categories.map((category, index) => (
+      <div>
+        {categories?.map((category, index) => (
           <RestCategory
             key={category?.card?.card?.title}
             data={category?.card?.card}
@@ -40,4 +40,4 @@ const RestMenu = () => {
   );
 };
 
-export default RestMenu;
+export default RestMenuCard;

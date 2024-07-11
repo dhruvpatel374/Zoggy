@@ -5,7 +5,7 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 import RestMenuItem from "./RestMenuItem";
 const RestCategory = (data) => {
   const [showItems, setShowItems] = useState(false);
-
+  console.log(data);
   const handleClick = () => {
     setShowItems(!showItems);
   };

@@ -83,6 +83,7 @@ const Header = () => {
       />
       {/* menu for mobile */}
       <div
+        onClick={() => setMenu(false)}
         className={clsx(
           "fixed h-full w-screen lg:hidden bg-black/50 backdrop-blur-sm top-0 left-0 -translate-x-full transition-all",
           isSideMenuOpen && "translate-x-0"

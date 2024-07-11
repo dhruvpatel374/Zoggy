@@ -6,7 +6,7 @@ import { MENU_API } from "../utils/constant";
 
 import axios from "axios";
 import ShimmerRestaurantInfo from "../utils/shimmer/ShimmerRestInfo";
-const RestaurantMenu = () => {
+const RestMenu = () => {
   const { resId } = useParams();
   const [restaurant, setRestaurant] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -41,4 +41,4 @@ const RestaurantMenu = () => {
   );
 };
 
-export default RestaurantMenu;
+export default RestMenu;

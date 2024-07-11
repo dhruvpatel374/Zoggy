@@ -8,6 +8,7 @@ import Error from "./components/Error";
 import ErrorMenu from "./components/ErrorMenu";
 import RestMenu from "./components/RestMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+
 const AppLayout = () => (
   <div>
     <Header />
