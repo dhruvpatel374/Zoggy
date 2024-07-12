@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import RestMenuInfo from "./RestMenuInfo";
-import RestMenuCard from "./RestMenuCard";
+import RestCategoryMobile from "./RestCategoryMobile";
 import { MENU_API } from "../utils/constant";
-import { isMobile } from "react-device-detect";
 import axios from "axios";
-import ShimmerRestaurantInfo from "../utils/shimmer/ShimmerRestInfo";
-import RestMenuMobile from "./RestMenuMobile";
-const RestMenu = () => {
+
+const RestMenuMobile = () => {
   const { resId } = useParams();
   const [restaurant, setRestaurant] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -29,17 +26,13 @@ const RestMenu = () => {
   }, [resId]);
 
   return (
-    <div className="container-md m-8">
-      {isLoading ? (
-        <ShimmerRestaurantInfo />
-      ) : (
-        <>
-          <RestMenuInfo info={restaurant?.data?.cards[2]?.card?.card?.info} />
-          {isMobile ? <RestMenuMobile /> : <RestMenuCard />}
-        </>
-      )}
+    <div className="container-md ">
+      <RestCategoryMobile
+        restaurant={restaurant}
+        // restaurant?.data?.cards[2]?.card?.card?.info
+      />
     </div>
   );
 };
 
-export default RestMenu;
+export default RestMenuMobile;

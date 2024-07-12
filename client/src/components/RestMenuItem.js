@@ -40,6 +40,7 @@ const RestMenuItem = (items) => {
           </li>
         </ul>
       ))}
+      <p className="text-center text-gray-500">No items available</p>
     </div>
   );
 };
