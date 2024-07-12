@@ -1,7 +1,9 @@
 import { CDN_URL } from "../utils/constant";
 const RestMenuItem = (items) => {
   const category = items?.data;
-
+  if (category.length === 0) {
+    return <p className="text-center text-gray-500">No items available</p>;
+  }
   return (
     <div>
       {category.map((item, i) => (
@@ -40,7 +42,6 @@ const RestMenuItem = (items) => {
           </li>
         </ul>
       ))}
-      <p className="text-center text-gray-500">No items available</p>
     </div>
   );
 };
