@@ -1,4 +1,7 @@
 import { CDN_URL } from "../utils/constant";
+import { SparklesIcon, StarIcon } from "@heroicons/react/24/solid";
+import NonVeg from "../utils/images/Non-Veg.png";
+import Veg from "../utils/images/Veg.png";
 const RestMenuItem = (items) => {
   const category = items?.data;
   if (category.length === 0) {
@@ -16,9 +19,33 @@ const RestMenuItem = (items) => {
             key={i}
           >
             <div className="basis-8/12 space-y-2">
+              <h2 className="flex gap-1">
+                {item?.card?.info?.itemAttribute?.vegClassifier === "VEG" ? (
+                  <img className="w-4 h-4" src={Veg}></img>
+                ) : (
+                  <img className="w-4 h-4" src={NonVeg}></img>
+                )}
+                {item?.card?.info?.isBestseller ? (
+                  <h1 className="text-sm font-bold text-orange-500 flex ">
+                    <SparklesIcon className="w-4 h-4" />
+                    Bestseller
+                  </h1>
+                ) : null}
+              </h2>
               <h2 className="text-base font-semibold">
                 {item?.card?.info?.name}
               </h2>
+              {item?.card?.info?.ratings?.aggregatedRating?.rating && (
+                <p className="flex align-middle gap-1">
+                  <StarIcon className="w-4 h-4 text-green-500 font-bold" />
+                  <span className="text-green-500 font-bold">
+                    {item.card.info.ratings.aggregatedRating.rating}
+                  </span>
+                  <span className="text-gray-500">
+                    ({item.card.info.ratings.aggregatedRating.ratingCountV2})
+                  </span>
+                </p>
+              )}
               <p className="text-xs font-semibold">
                 ₹
                 {item.card.info.price / 100 ||
@@ -42,6 +69,7 @@ const RestMenuItem = (items) => {
           </li>
         </ul>
       ))}
+      <p className="text-center text-gray-500">No items available</p>
     </div>
   );
 };
