@@ -8,14 +8,13 @@ import Error from "./components/Error";
 import RestMenu from "./components/RestMenu";
 import About from "./components/About";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import { Analytics } from "@vercel/analytics/react";
 
 const AppLayout = () => (
   <div>
     <Header />
     <Outlet />
     <Footer />
-    <Analytics />
+   
   </div>
 );
 const appRouter = createBrowserRouter([
