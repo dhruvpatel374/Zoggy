@@ -5,15 +5,19 @@ import Body from "./components/Body";
 import Footer from "./components/Footer";
 import ContactUs from "./components/ContactUs";
 import Error from "./components/Error";
-
 import RestMenu from "./components/RestMenu";
+import About from "./components/About";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 const AppLayout = () => (
   <div>
     <Header />
     <Outlet />
     <Footer />
+    <SpeedInsights />
+    <Analytics />
   </div>
 );
 const appRouter = createBrowserRouter([
@@ -30,6 +34,10 @@ const appRouter = createBrowserRouter([
         path: "/restaurant/:resId",
         element: <RestMenu />,
         errorElement: <Error />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
     ],
     errorElement: <Error />,

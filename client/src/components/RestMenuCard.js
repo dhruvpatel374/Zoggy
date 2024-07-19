@@ -1,4 +1,3 @@
-// import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestMenu from "../utils/useRestMenu";
 import RestCategory from "./RestCategory";

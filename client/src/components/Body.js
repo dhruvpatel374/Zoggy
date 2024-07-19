@@ -3,7 +3,6 @@ import { SWIGGY_API } from "../utils/constant";
 import { useState, useEffect } from "react";
 import ShimmerRestCard from "../utils/shimmer/ShimmerRestCard";
 import { Link } from "react-router-dom";
-
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [originalListOfRestaurant, setOriginalListOfRestaurant] = useState([]);

@@ -2,18 +2,26 @@ import { CDN_URL } from "../utils/constant";
 import { SparklesIcon, StarIcon } from "@heroicons/react/24/solid";
 import NonVeg from "../utils/images/Non-Veg.png";
 import Veg from "../utils/images/Veg.png";
+import { useState, useEffect } from "react";
 const RestMenuItem = (items) => {
-  const category = items?.data;
-  if (category.length === 0) {
+  // const category = items?.data;
+  const [menuItems, setMenuItems] = useState([]);
+
+  useEffect(() => {
+    // Assuming you fetch data asynchronously and set it to items.data
+    setMenuItems(items?.data);
+  }, [items]);
+  if (menuItems.length === 0) {
     return <p className="text-center text-gray-500">No items available</p>;
   }
+
   return (
     <div>
-      {category.map((item, i) => (
+      {menuItems.map((item, i) => (
         <ul className="p-4">
           {/* {item?.card?.card?.itemCards?.map((item, i) => {
             const itemPrice =
-              item?.card?.info?.price || item?.card?.info?.defaultPrice; */}
+            item?.card?.info?.price || item?.card?.info?.defaultPrice; */}
           <li
             className="p-2 py-8 flex gap-4 md:gap-8 justify-between items-center border-b"
             key={i}
@@ -26,10 +34,10 @@ const RestMenuItem = (items) => {
                   <img className="w-4 h-4" src={NonVeg}></img>
                 )}
                 {item?.card?.info?.isBestseller ? (
-                  <h1 className="text-sm font-bold text-orange-500 flex ">
+                  <h3 className="text-sm font-bold text-orange-500 flex ">
                     <SparklesIcon className="w-4 h-4" />
                     Bestseller
-                  </h1>
+                  </h3>
                 ) : null}
               </h2>
               <h2 className="text-base font-semibold">
@@ -37,8 +45,8 @@ const RestMenuItem = (items) => {
               </h2>
               {item?.card?.info?.ratings?.aggregatedRating?.rating && (
                 <p className="flex align-middle gap-1">
-                  <StarIcon className="w-4 h-4 text-green-500 font-bold" />
-                  <span className="text-green-500 font-bold">
+                  <StarIcon className="w-4 h-4 text-green-700 font-bold" />
+                  <span className="text-green-700 font-bold">
                     {item.card.info.ratings.aggregatedRating.rating}
                   </span>
                   <span className="text-gray-500">
