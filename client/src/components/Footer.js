@@ -59,12 +59,12 @@ const Footer = () => {
               onClick={() => setCity(!isCityOpen)}
             >
               {City.length} cities
-              <span className="inline">
-                {isCityOpen ? (
-                  <ChevronUpIcon className="w-6 h-6" />
-                ) : (
-                  <ChevronDownIcon className="w-6 h-6" />
-                )}
+              <span
+                className={`transition-transform duration-300 inline ${
+                  isCityOpen ? "rotate-180" : ""
+                }`}
+              >
+                <ChevronUpIcon className="w-6 h-6" />
               </span>
             </button>
           </li>

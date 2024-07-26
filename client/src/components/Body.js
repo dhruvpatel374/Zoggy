@@ -39,7 +39,6 @@ const Body = () => {
       resData
     );
     setOriginalListOfRestaurant(resData);
-    console.log(banners?.info);
   };
   const onlineStatus = useOnlineStatus();
   if (onlineStatus === false) {

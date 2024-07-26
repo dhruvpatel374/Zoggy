@@ -20,13 +20,12 @@ const RestCategory = (data) => {
           <h3 className="text-lg font-semibold">
             {data?.data?.title} ({data?.data?.itemCards.length})
           </h3>
-
-          <button>
-            {showItems ? (
-              <ChevronUpIcon className="w-6 h-6" />
-            ) : (
-              <ChevronDownIcon className="w-6 h-6" />
-            )}
+          <button
+            className={`transition-transform duration-300 ${
+              showItems ? "rotate-180" : ""
+            }`}
+          >
+            <ChevronUpIcon className="w-6 h-6" />
           </button>
         </div>
         <div></div>

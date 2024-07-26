@@ -20,12 +20,12 @@ const RestaurantMenuItemMobile = ({
         className="flex cursor-pointer justify-between items-center p-4 my-2 rounded-md bg-gray-50 select-none"
       >
         <h3 className="text-lg font-semibold">{items.card.card.title}</h3>
-        <button>
-          {activeIndex === index ? (
-            <ChevronUpIcon className="w-6 h-6" />
-          ) : (
-            <ChevronDownIcon className="w-6 h-6 " />
-          )}
+        <button
+          className={`transition-transform duration-300 ${
+            activeIndex === index ? "rotate-180" : ""
+          }`}
+        >
+          <ChevronUpIcon className="w-6 h-6" />
         </button>
       </div>
 

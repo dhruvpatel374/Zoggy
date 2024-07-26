@@ -89,7 +89,10 @@ const Header = () => {
           isSideMenuOpen && "translate-x-0"
         )}
       >
-        <section className="text-black bg-white flex-col absolute right-0 top-0 h-screen p-6 gap-8 z-50 flex w-56 items-center">
+        <section
+          onClick={(e) => e.stopPropagation()}
+          className="text-black bg-white flex-col absolute right-0 top-0 h-screen p-6 gap-8 z-50 flex w-56 items-center"
+        >
           <XMarkIcon
             onClick={() => setMenu(false)}
             className="mt-0 mb-2 w-12 h-12 flex 
@@ -98,6 +101,7 @@ const Header = () => {
           <ul className="  gap-4  text-zinc-700 ">
             <li>
               <Link
+                onClick={() => setMenu(false)}
                 to="/"
                 className="p-4 px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
               >
@@ -106,6 +110,7 @@ const Header = () => {
             </li>
             <li>
               <Link
+                onClick={() => setMenu(false)}
                 to="/about"
                 className="p-4 px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
               >
@@ -114,6 +119,7 @@ const Header = () => {
             </li>
             <li>
               <Link
+                onClick={() => setMenu(false)}
                 to="/contact"
                 className="p-4 px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
               >
@@ -122,6 +128,7 @@ const Header = () => {
             </li>
             <li>
               <Link
+                onClick={() => setMenu(false)}
                 to="/cart"
                 className="p-4 px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
               >
