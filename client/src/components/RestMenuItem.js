@@ -44,15 +44,17 @@ const RestMenuItem = (items) => {
                 {item?.card?.info?.name}
               </h2>
               {item?.card?.info?.ratings?.aggregatedRating?.rating && (
-                <p className="flex align-middle gap-1">
-                  <StarIcon className="w-4 h-4 text-green-700 font-bold" />
-                  <span className="text-green-700 font-bold">
-                    {item.card.info.ratings.aggregatedRating.rating}
-                  </span>
-                  <span className="text-gray-500">
+                <div className="flex items-center ">
+                  <div className="gap-1 flex items-center">
+                    <StarIcon className="w-4 h-4  text-green-500" />{" "}
+                    <p className="font-bold text-green-500 text-base">
+                      {item.card.info.ratings.aggregatedRating.rating}
+                    </p>
+                  </div>
+                  <span className="text-gray-500 ">
                     ({item.card.info.ratings.aggregatedRating.ratingCountV2})
                   </span>
-                </p>
+                </div>
               )}
               <p className="text-xs font-semibold">
                 ₹
@@ -68,7 +70,7 @@ const RestMenuItem = (items) => {
               <img
                 className="w-full h-32 aspect-video object-cover rounded-md"
                 src={CDN_URL + item?.card?.info?.imageId}
-                alt=""
+                alt="No Image Available"
               />
               <button className="bg-white text-orange-500 hover:bg-orange-500 hover:text-white font-bold p-2 px-6 rounded-md absolute shadow-md left-[50%] -bottom-5 -translate-x-[50%]">
                 ADD

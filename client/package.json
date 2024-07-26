@@ -25,10 +25,9 @@
   "homepage": "https://github.com/dhruvpatel374/Food-Delivery-App#readme",
   "dependencies": {
     "@heroicons/react": "^2.1.3",
-    "@vercel/analytics": "^1.3.1",
-    "@vercel/speed-insights": "^1.0.12",
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
+    "keen-slider": "^6.8.6",
     "react": "^18.3.1",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.3.1",

@@ -1,29 +1,39 @@
 import React from "react";
+import { useLayoutEffect } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
 import ContactUs from "./components/ContactUs";
-import Error from "./components/Error";
+import Error from "./utils/ErrorPage/Error";
 import RestMenu from "./components/RestMenu";
 import About from "./components/About";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import { SpeedInsights } from "@vercel/speed-insights/react";
-import { Analytics } from "@vercel/analytics/react";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  useLocation,
+} from "react-router-dom";
 
-const AppLayout = () => (
-  <div>
-    <Header />
-    <Outlet />
-    <Footer />
-    <SpeedInsights />
-    <Analytics />
-  </div>
-);
+const App = () => {
+  const { pathname } = useLocation();
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return (
+    <div>
+      <Header />
+      <Outlet />
+      <Footer />
+    </div>
+  );
+};
+
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element: <App />,
     children: [
       {
         path: "/",

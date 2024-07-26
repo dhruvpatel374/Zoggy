@@ -3,6 +3,8 @@ import { SWIGGY_API } from "../utils/constant";
 import { useState, useEffect } from "react";
 import ShimmerRestCard from "../utils/shimmer/ShimmerRestCard";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import OfflineError from "../utils/ErrorPage/OfflineError";
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [originalListOfRestaurant, setOriginalListOfRestaurant] = useState([]);
@@ -10,7 +12,6 @@ const Body = () => {
   const [deliveryTimeSelected, setDeliveryTimeSelected] = useState(true);
   const [ratingHtoLSelected, setRatingHtoLSelected] = useState(true);
   const [searchText, setSearchText] = useState("");
-
   const [isSearchEmpty, setIsSearchEmpty] = useState(false);
 
   useEffect(() => {
@@ -38,8 +39,12 @@ const Body = () => {
       resData
     );
     setOriginalListOfRestaurant(resData);
+    console.log(banners?.info);
   };
-
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) {
+    return <OfflineError />;
+  }
   if (originalListOfRestaurant.length === 0) {
     return <ShimmerRestCard />;
   }

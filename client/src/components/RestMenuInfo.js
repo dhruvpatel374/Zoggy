@@ -24,10 +24,11 @@ const RestMenuInfo = ({ info }) => {
           </div>
         </div>
         <div className="border rounded-md font-bold  p-2 text-sm">
-          <p className="flex justify-center align-middle gap-1 mb-2 text-green-500 ">
-            <StarIcon className="w-4 h-4 " /> {info?.avgRatingString}
-          </p>
-          <p className="pt-2 border-t text-xs font-normal text-gray-500">
+          <div className="flex justify-center items-center gap-1  text-green-500">
+            <StarIcon className="w-4 h-4" />{" "}
+            <p className="font-bold  ">{info?.avgRatingString}</p>
+          </div>
+          <p className="pt-2 border-t text-xs font-normal text-gray-500 text-center">
             {info?.totalRatingsString}
           </p>
         </div>

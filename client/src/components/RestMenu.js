@@ -7,6 +7,8 @@ import { isMobile } from "react-device-detect";
 import axios from "axios";
 import ShimmerRestaurantInfo from "../utils/shimmer/ShimmerRestInfo";
 import RestMenuMobile from "./RestMenuMobile";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import OfflineError from "../utils/ErrorPage/OfflineError";
 const RestMenu = () => {
   const { resId } = useParams();
   const [restaurant, setRestaurant] = useState(null);
@@ -27,7 +29,10 @@ const RestMenu = () => {
 
     fetchData();
   }, [resId]);
-
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) {
+    return <OfflineError />;
+  }
   return (
     <div className="container-md m-8">
       {isLoading ? (

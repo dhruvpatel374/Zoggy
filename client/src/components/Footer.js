@@ -58,7 +58,7 @@ const Footer = () => {
               className="border border-grey-500 rounded-md p-2 text-sm flex align-middle gap-1 "
               onClick={() => setCity(!isCityOpen)}
             >
-              589 cities
+              {City.length} cities
               <span className="inline">
                 {isCityOpen ? (
                   <ChevronUpIcon className="w-6 h-6" />
@@ -80,9 +80,9 @@ const Footer = () => {
           Other cities that we deliver:
         </h1>
         <div className="grid  md:grid-cols-4 lg:gap-8 md:gap-8 lg:grid-cols-5 grid-cols-2 gap-5 mt-5 pt-5 pl-10 ">
-          {City.map((data, key) => (
-            <a key={key} href={data.name} className="font-light">
-              {data.name}
+          {City?.map((data, key) => (
+            <a className="font-light" key={key}>
+              {data.text}
             </a>
           ))}
         </div>
