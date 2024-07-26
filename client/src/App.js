@@ -15,7 +15,7 @@ import {
   useLocation,
 } from "react-router-dom";
 
-const App = () => {
+const AppLayout = () => {
   const { pathname } = useLocation();
 
   useLayoutEffect(() => {
@@ -33,7 +33,7 @@ const App = () => {
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <AppLayout />,
     children: [
       {
         path: "/",
