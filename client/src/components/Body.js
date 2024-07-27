@@ -5,6 +5,7 @@ import ShimmerRestCard from "../utils/shimmer/ShimmerRestCard";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import OfflineError from "../utils/ErrorPage/OfflineError";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [originalListOfRestaurant, setOriginalListOfRestaurant] = useState([]);
@@ -64,7 +65,7 @@ const Body = () => {
         ></input>
         <button
           type="submit"
-          className="bg-orange-400 text-white p-2 sm:px-8 rounded-md"
+          className="bg-orange-400 basis-2/12 text-center text-white p-2 flex justify-center gap-2 items-center md:px-8 rounded-md text-sm md:text-base"
           onClick={() => {
             const filteredRestaurant = originalListOfRestaurant.filter(
               (res) => {
@@ -84,7 +85,8 @@ const Body = () => {
             setListOfRestaurant(filteredRestaurant);
           }}
         >
-          Search
+          <MagnifyingGlassIcon className="w-4 h-4" />{" "}
+          <span className="hidden md:block">Search</span>
         </button>
       </div>
       <h1 className="my-4 font-bold text-3xl pl-5 ">Restaurant List</h1>
@@ -144,10 +146,11 @@ const Body = () => {
           </div>
         )}
       </div>
-      <div className="grid  md:grid-cols-3 lg:grid-cols-4 grid-cols-1 gap-8 m-5">
+      <div className="grid  md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-4 md:gap-6 lg:gap-8 m-5">
         {listOfRestaurant?.map((restaurant) => (
           <Link
             to={"/restaurant/" + restaurant?.info?.id}
+            className="hover:scale-95 transition ease-in-out duration-300 relative z-10"
             key={restaurant?.info?.id}
           >
             <RestCard resData={restaurant} />
