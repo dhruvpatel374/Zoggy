@@ -18,7 +18,7 @@ const RestMenuItem = (items) => {
   return (
     <div>
       {menuItems.map((item, i) => (
-        <ul className="p-4">
+        <ul className="p-4" key={i}>
           {/* {item?.card?.card?.itemCards?.map((item, i) => {
             const itemPrice =
             item?.card?.info?.price || item?.card?.info?.defaultPrice; */}

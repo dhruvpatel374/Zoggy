@@ -12,19 +12,19 @@ const RestMenuCard = () => {
 
   const itemCards =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-  console.log(itemCards);
+  // console.log(itemCards);
   const { name, cuisines, costForTwoMessage, avgRating } =
     resInfo?.cards[2]?.card?.card?.info;
 
   const category = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-  console.log(category);
+  // console.log(category);
   const categories = category?.filter(
     (c) =>
       c?.card?.card?.["@type"] ==
       "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
   );
 
-  console.log(categories);
+  // console.log(categories);
   return (
     <div>
       <div>

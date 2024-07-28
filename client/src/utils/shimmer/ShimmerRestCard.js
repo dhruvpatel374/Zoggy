@@ -1,3 +1,4 @@
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 const ShimmerRestCard = () => {
   return (
     <div className="flex flex-row">
@@ -12,9 +13,10 @@ const ShimmerRestCard = () => {
           ></input>
           <button
             type="submit"
-            className="bg-orange-400 text-white p-2 sm:px-8 rounded-md"
+            className="bg-orange-400 basis-2/12 text-center text-white p-2 flex justify-center gap-2 items-center md:px-8 rounded-md text-sm md:text-base"
           >
-            Search
+            <MagnifyingGlassIcon className="w-4 h-4" />{" "}
+            <span className="hidden md:block">Search</span>
           </button>
         </div>
         <h1 className="my-4 font-bold text-3xl pl-5">Restaurant List</h1>

@@ -18,7 +18,7 @@ const RestMenu = () => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(`${MENU_API}?restaurantId=${resId}`);
-        console.log(data);
+        // console.log(data);
         setRestaurant(data);
       } catch (err) {
         console.error("Error fetching data:", err);
@@ -34,7 +34,7 @@ const RestMenu = () => {
     return <OfflineError />;
   }
   return (
-    <div className="container-md m-8">
+    <div className="container-md   m-8  md:w-6/12 md:m-auto ">
       {isLoading ? (
         <ShimmerRestaurantInfo />
       ) : (

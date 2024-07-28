@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
+import { ChevronUpIcon } from "@heroicons/react/24/solid";
 
 import RestMenuItem from "./RestMenuItem";
 const RestCategory = (data) => {
   const [showItems, setShowItems] = useState(false);
-  console.log(data);
+  // console.log(data);
   const handleClick = () => {
     setShowItems(!showItems);
   };

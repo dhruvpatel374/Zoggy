@@ -45,7 +45,7 @@ const RestCard = (props) => {
           </p>
         </div>
       </div>
-      <h2 className="text-lg font-bold mt-2 text-zinc-800 ">{name}</h2>
+      <h2 className="text-lg font-bold mt-2 text-zinc-800  ">{name}</h2>
       <div className="flex items-center gap-2">
         <StarIcon className="w-6 h-6 text-orange-400" />{" "}
         <p className="font-bold text-gray-700 text-base">

@@ -1,4 +1,5 @@
 import { CDN_URL } from "../utils/constant";
+import { useState } from "react";
 import {
   ChevronUpIcon,
   ChevronDownIcon,
@@ -7,29 +8,25 @@ import {
 } from "@heroicons/react/24/solid";
 import NonVeg from "../utils/images/Non-Veg.png";
 import Veg from "../utils/images/Veg.png";
-const RestaurantMenuItemMobile = ({
-  items,
-  index,
-  activeIndex,
-  setActiveIndex,
-}) => {
+const RestaurantMenuItemMobile = ({ items }) => {
+  const [showItems, setShowItems] = useState(false);
   return (
     <>
       <div
-        onClick={() => setActiveIndex(index)}
+        onClick={() => setShowItems(!showItems)}
         className="flex cursor-pointer justify-between items-center p-4 my-2 rounded-md bg-gray-50 select-none"
       >
         <h3 className="text-lg font-semibold">{items.card.card.title}</h3>
         <button
           className={`transition-transform duration-300 ${
-            activeIndex === index ? "rotate-180" : ""
+            showItems ? "rotate-180" : ""
           }`}
         >
           <ChevronUpIcon className="w-6 h-6" />
         </button>
       </div>
 
-      {activeIndex === index && (
+      {showItems && (
         <ul className="p-4">
           {items?.card?.card?.itemCards?.length > 0 ? (
             items.card.card.itemCards.map((item, i) => {
@@ -42,20 +39,24 @@ const RestaurantMenuItemMobile = ({
                   key={i}
                 >
                   <div className="basis-8/12 space-y-2">
-                    <h2 className="flex gap-1">
+                    <div className="flex gap-1">
                       {item?.card?.info?.itemAttribute?.vegClassifier ===
                       "VEG" ? (
-                        <img className="w-4 h-4" src={Veg}></img>
+                        <img className="w-4 h-4" src={Veg} alt="Vegetarian" />
                       ) : (
-                        <img className="w-4 h-4" src={NonVeg}></img>
+                        <img
+                          className="w-4 h-4"
+                          src={NonVeg}
+                          alt="Non-Vegetarian"
+                        />
                       )}
                       {item?.card?.info?.isBestseller ? (
-                        <h1 className="text-sm font-bold text-orange-500 flex ">
+                        <span className="text-sm font-bold text-orange-500 flex">
                           <SparklesIcon className="w-4 h-4" />
                           Bestseller
-                        </h1>
+                        </span>
                       ) : null}
-                    </h2>
+                    </div>
                     <h2 className="text-base font-semibold">
                       {item?.card?.info?.name}
                     </h2>

@@ -13,7 +13,7 @@ const RestMenuMobile = () => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(`${MENU_API}?restaurantId=${resId}`);
-        console.log(data);
+        // console.log(data);
         setRestaurant(data);
       } catch (err) {
         console.error("Error fetching data:", err);

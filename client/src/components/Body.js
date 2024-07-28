@@ -34,7 +34,7 @@ const Body = () => {
       }
     }
     const resData = await checkJsonData(json);
-    console.log(json);
+    // console.log(json);
     setListOfRestaurant(
       // json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
       resData
@@ -89,7 +89,10 @@ const Body = () => {
           <span className="hidden md:block">Search</span>
         </button>
       </div>
-      <h1 className="my-4 font-bold text-3xl pl-5 ">Restaurant List</h1>
+      <h1 className="my-4 font-bold text-3xl pl-5 ">
+        Restaurant List
+        {/* ({listOfRestaurant?.length}) */}
+      </h1>
       <div className="pl-5">
         <button
           className={`border-2 border-gray-500 rounded-3xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 ${
@@ -103,7 +106,7 @@ const Body = () => {
               (a, b) => a.info.sla.deliveryTime - b.info.sla.deliveryTime
             );
 
-            console.log(newList);
+            // console.log(newList);
             setListOfRestaurant(newList);
           }}
         >
@@ -119,7 +122,7 @@ const Body = () => {
 
             newList.sort((a, b) => b.info.avgRating - a.info.avgRating);
 
-            console.log(newList);
+            // console.log(newList);
             setListOfRestaurant(newList);
           }}
         >
