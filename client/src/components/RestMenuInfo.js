@@ -18,9 +18,11 @@ const RestMenuInfo = ({ info }) => {
             {info?.areaName}, {info?.sla.lastMileTravelString}
           </p>
           <div className=" text-gray-500 text-xs ">
-            <p>
-              ₹{info?.feeDetails?.fees[0]?.fee / 100} Delivery fee will apply
-            </p>
+            {info?.feeDetails?.fees[0]?.fee ? (
+              <p>
+                ₹{info?.feeDetails?.fees[0]?.fee / 100} Delivery fee will apply
+              </p>
+            ) : null}
           </div>
         </div>
         <div className="border rounded-md font-bold  p-2 text-sm">

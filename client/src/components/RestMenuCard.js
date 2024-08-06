@@ -2,19 +2,28 @@ import { useParams } from "react-router-dom";
 import useRestMenu from "../utils/useRestMenu";
 import RestCategory from "./RestCategory";
 import ShimmerRestMenu from "../utils/shimmer/ShimmerRestMenu";
-
+import { useImage } from "../utils/ImageContext.js";
+import { useEffect } from "react";
 const RestMenuCard = () => {
   const { resId } = useParams();
 
   const resInfo = useRestMenu(resId); // Custom Hooks
+  const { image, setImage } = useImage(); // Use the context
+  //
 
+  useEffect(() => {
+    if (resInfo) {
+      const newImage = resInfo?.cards[2]?.card?.card?.info?.cloudinaryImageId;
+      setImage(newImage); // Save the image in context
+    }
+  }, [resInfo, setImage]);
   if (!resInfo) return <ShimmerRestMenu />;
 
   const itemCards =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
   // console.log(itemCards);
-  const { name, cuisines, costForTwoMessage, avgRating } =
-    resInfo?.cards[2]?.card?.card?.info;
+  const { name, cuisines, costForTwoMessage, avgRating, cloudinaryImageId } =
+    resInfo?.cards[2];
 
   const category = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
   // console.log(category);
@@ -23,6 +32,8 @@ const RestMenuCard = () => {
       c?.card?.card?.["@type"] ==
       "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
   );
+  // const image = resInfo?.cards[2]?.card?.card?.info;
+  // console.log(image);
 
   // console.log(categories);
   return (
@@ -32,6 +43,7 @@ const RestMenuCard = () => {
           <RestCategory
             key={category?.card?.card?.title}
             data={category?.card?.card}
+            // image={image.cloudinaryImageId}
           />
         ))}
       </div>

@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import ContactUs from "./components/ContactUs";
 import Error from "./utils/ErrorPage/Error";
 import RestMenu from "./components/RestMenu";
+import { ImageProvider } from "./utils/ImageContext.js";
 import About from "./components/About";
 import {
   createBrowserRouter,
@@ -24,7 +25,9 @@ const AppLayout = () => {
   return (
     <div>
       <Header />
-      <Outlet />
+      <ImageProvider>
+        <Outlet />
+      </ImageProvider>
       <Footer />
     </div>
   );

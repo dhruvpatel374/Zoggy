@@ -9,7 +9,6 @@ const RestCategory = (data) => {
   const handleClick = () => {
     setShowItems(!showItems);
   };
-
   return (
     <>
       <div>
