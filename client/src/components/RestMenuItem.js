@@ -1,7 +1,8 @@
 import { CDN_URL } from "../utils/constant";
-import { SparklesIcon, StarIcon } from "@heroicons/react/24/solid";
-import NonVeg from "../utils/images/Non-Veg.png";
-import Veg from "../utils/images/Veg.png";
+import { StarIcon } from "@heroicons/react/24/solid";
+import NonVeg from "../utils/images/Non-Veg.svg";
+import Veg from "../utils/images/Veg.svg";
+import BestSeller from "../utils/images/BestSeller.svg";
 import { useState, useEffect } from "react";
 import { useImage } from "../utils/ImageContext.js";
 const RestMenuItem = (data) => {
@@ -36,8 +37,7 @@ const RestMenuItem = (data) => {
                 )}
                 {item?.card?.info?.isBestseller ? (
                   <h3 className="text-sm font-bold text-orange-500 flex ">
-                    <SparklesIcon className="w-4 h-4" />
-                    Bestseller
+                    <img src={BestSeller} className="w-18 h-4" />
                   </h3>
                 ) : null}
               </h2>

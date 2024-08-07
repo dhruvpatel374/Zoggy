@@ -5,6 +5,7 @@ import { PrevButton, NextButton, usePrevNextButtons } from "./BannerButton";
 import useEmblaCarousel from "embla-carousel-react";
 import { CDN_URL } from "../utils/constant";
 import { isDesktop } from "react-device-detect";
+import "../../index.css";
 const Banner = (props) => {
   const { slides, options, data } = props;
   console.log(props);
@@ -22,8 +23,8 @@ const Banner = (props) => {
     <section className="embla mt-8 mb-12">
       <div className="flex justify-between align-middle mx-auto">
         <h1 className="my-4 font-bold text-3xl pl-5  ">What's on your mind?</h1>
-        <div className="embla__controls ">
-          <div className="embla__buttons w-10 h-10">
+        <div className="embla__controls1 flex items-center">
+          <div className="embla__buttons1 flex items-center">
             <PrevButton
               onClick={onPrevButtonClick}
               disabled={prevBtnDisabled}
@@ -39,9 +40,9 @@ const Banner = (props) => {
         <div className="embla__container w-[40rem]">
           {data?.map((item) => (
             <div className="embla__slide" key={item?.id}>
-              <div className="embla__slide__number">
+              <div className="embla__slide__number ">
                 <img
-                  className="block w-24 h-24"
+                  className="block w-24 h-24 cursor-pointer"
                   src={CDN_URL + item?.imageId}
                   alt=""
                   key={item?.id}

@@ -1,13 +1,9 @@
 import { CDN_URL } from "../utils/constant";
 import { useState } from "react";
-import {
-  ChevronUpIcon,
-  ChevronDownIcon,
-  StarIcon,
-  SparklesIcon,
-} from "@heroicons/react/24/solid";
-import NonVeg from "../utils/images/Non-Veg.png";
-import Veg from "../utils/images/Veg.png";
+import { ChevronUpIcon, StarIcon } from "@heroicons/react/24/solid";
+import NonVeg from "../utils/images/Non-Veg.svg";
+import Veg from "../utils/images/Veg.svg";
+import BestSeller from "../utils/images/BestSeller.svg";
 const RestaurantMenuItemMobile = ({ items }) => {
   const [showItems, setShowItems] = useState(false);
   return (
@@ -52,8 +48,7 @@ const RestaurantMenuItemMobile = ({ items }) => {
                       )}
                       {item?.card?.info?.isBestseller ? (
                         <span className="text-sm font-bold text-orange-500 flex">
-                          <SparklesIcon className="w-4 h-4" />
-                          Bestseller
+                          <img src={BestSeller} className="w-18 h-4" />
                         </span>
                       ) : null}
                     </div>

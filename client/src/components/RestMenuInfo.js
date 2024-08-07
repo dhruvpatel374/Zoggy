@@ -1,8 +1,20 @@
 import { StarIcon } from "@heroicons/react/24/solid";
-import { CDN_URL } from "../utils/constant";
-const RestMenuInfo = ({ info }) => {
+
+import OfferBanner from "./OfferBanner";
+
+const RestMenuInfo = ({ info, data }) => {
+  console.log(data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers);
+
+  const resinfo =
+    data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers;
+  const OPTIONS = { dragFree: true };
+  const SLIDE_COUNT = resinfo?.length;
+  const SLIDES = resinfo.length;
+  console.log(info);
+  console.log(resinfo);
+
   return (
-    <div>
+    <div className="border-b border-dashed ">
       <div className="flex justify-between items-center pb-4 border-b border-dashed">
         <div>
           <h2 className="text-xl font-bold my-2">{info?.name}</h2>
@@ -35,6 +47,7 @@ const RestMenuInfo = ({ info }) => {
           </p>
         </div>
       </div>
+      <OfferBanner data={resinfo} options={OPTIONS} />
     </div>
   );
 };
