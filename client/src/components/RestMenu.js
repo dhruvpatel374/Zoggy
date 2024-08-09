@@ -43,6 +43,7 @@ const RestMenu = () => {
             info={restaurant?.data?.cards[2]?.card?.card?.info}
             data={restaurant?.data}
           />
+
           {isMobile ? <RestMenuMobile /> : <RestMenuCard />}
         </>
       )}

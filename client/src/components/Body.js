@@ -20,9 +20,6 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [isSearchEmpty, setIsSearchEmpty] = useState(false);
   const { restaurant: resinfo, loading } = useRest();
-  console.log(
-    resinfo?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info
-  );
 
   useEffect(() => {
     fetchData();
@@ -68,7 +65,7 @@ const Body = () => {
         {loading ? (
           <ShimmerBanner />
         ) : (
-          <Banner data={resinfo} options={{ loop: true }} />
+          <Banner data={resinfo} options={{ loop: false, dragFree: true }} />
         )}
         <div className="flex gap-4 max-w-[560px] w-[95%] mx-auto m-5 h-12 lg:w-[500px]   ">
           <input

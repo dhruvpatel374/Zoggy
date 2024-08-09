@@ -1,14 +1,27 @@
 import { useState } from "react";
-
 import { ChevronUpIcon } from "@heroicons/react/24/solid";
-
 import RestMenuItem from "./RestMenuItem";
-const RestCategory = (data) => {
+import { useFilter } from "../utils/FilterContext";
+
+const RestCategory = ({ data }) => {
   const [showItems, setShowItems] = useState(false);
-  // console.log(data);
+  const { filter } = useFilter();
+
   const handleClick = () => {
     setShowItems(!showItems);
   };
+
+  const filteredItemCards = data?.itemCards?.filter((item) => {
+    const isVeg = item?.card?.info?.itemAttribute?.vegClassifier === "VEG";
+    const isBestseller = item?.card?.info?.isBestseller;
+    return (
+      filter === "ALL" ||
+      (filter === "VEG" && isVeg) ||
+      (filter === "NON_VEG" && !isVeg) ||
+      (filter === "BESTSELLER" && isBestseller)
+    );
+  });
+
   return (
     <>
       <div>
@@ -17,7 +30,7 @@ const RestCategory = (data) => {
           className="flex cursor-pointer justify-between items-center p-4 my-2 rounded-md bg-gray-50 select-none"
         >
           <h3 className="text-lg font-semibold">
-            {data?.data?.title} ({data?.data?.itemCards.length})
+            {data?.title} ({filteredItemCards.length})
           </h3>
           <button
             className={`transition-transform duration-300 ${
@@ -30,7 +43,7 @@ const RestCategory = (data) => {
         <div></div>
       </div>
       <div className="my-4">
-        {showItems && <RestMenuItem data={data?.data?.itemCards} />}
+        {showItems && <RestMenuItem data={filteredItemCards} />}
       </div>
     </>
   );

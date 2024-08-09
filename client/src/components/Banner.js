@@ -8,7 +8,6 @@ import { isDesktop } from "react-device-detect";
 import "../../index.css";
 const Banner = (props) => {
   const { slides, options, data } = props;
-  console.log(props);
 
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
 

@@ -30,7 +30,7 @@ const RestMenuInfo = ({ info, data }) => {
             {info?.areaName}, {info?.sla.lastMileTravelString}
           </p>
           <div className=" text-gray-500 text-xs ">
-            {info?.feeDetails?.fees[0]?.fee ? (
+            {info?.feeDetails.length > 0 ? (
               <p>
                 ₹{info?.feeDetails?.fees[0]?.fee / 100} Delivery fee will apply
               </p>

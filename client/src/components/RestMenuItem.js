@@ -5,8 +5,10 @@ import Veg from "../utils/images/Veg.svg";
 import BestSeller from "../utils/images/BestSeller.svg";
 import { useState, useEffect } from "react";
 import { useImage } from "../utils/ImageContext.js";
+import { useFilter } from "../utils/FilterContext.js";
 const RestMenuItem = (data) => {
   // const category = items?.data;
+  const { filter } = useFilter();
   const [menuItems, setMenuItems] = useState([]);
   const { image } = useImage();
   useEffect(() => {
@@ -16,10 +18,24 @@ const RestMenuItem = (data) => {
   if (menuItems.length === 0) {
     return <p className="text-center text-gray-500">No items available</p>;
   }
+  const filteredItems = menuItems?.filter((item) => {
+    const isVeg = item?.card?.info?.itemAttribute?.vegClassifier === "VEG";
+    const isBestseller = item?.card?.info?.isBestseller;
 
+    return (
+      filter === "ALL" ||
+      (filter === "VEG" && isVeg) ||
+      (filter === "NON_VEG" && !isVeg) ||
+      (filter === "BESTSELLER" && isBestseller)
+    );
+  });
+
+  if (filteredItems.length === 0) {
+    return <p className="text-center text-gray-500">No items available</p>;
+  }
   return (
     <div>
-      {menuItems.map((item, i) => (
+      {filteredItems.map((item, i) => (
         <ul className="p-4" key={i}>
           {/* {item?.card?.card?.itemCards?.map((item, i) => {
             const itemPrice =
@@ -47,8 +63,8 @@ const RestMenuItem = (data) => {
               {item?.card?.info?.ratings?.aggregatedRating?.rating && (
                 <div className="flex items-center ">
                   <div className="gap-1 flex items-center">
-                    <StarIcon className="w-4 h-4  text-green-500" />{" "}
-                    <p className="font-bold text-green-500 text-base">
+                    <StarIcon className="w-4 h-4  text-[#1BA672]" />{" "}
+                    <p className="font-bold text-[#1BA672] text-base">
                       {item.card.info.ratings.aggregatedRating.rating}
                     </p>
                   </div>

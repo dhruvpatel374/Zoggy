@@ -6,6 +6,7 @@ import {
 } from "./OfferBannerArrowButtons";
 import useEmblaCarousel from "embla-carousel-react";
 import { CDN_URL } from "../utils/constant";
+
 // import "../../Carousel.css";
 const OfferBanner = (props) => {
   const { slides, options, data } = props;
@@ -43,7 +44,7 @@ const OfferBanner = (props) => {
           {data?.map((index, i) => (
             <div className="embla__slide1  " key={index?.info?.resId}>
               <div className="embla__slide__number1  ">
-                <div className="flex gap-6 align-middle  border-gray-300  border-[1px] rounded-2xl p-2 lg:w-60 ">
+                <div className="flex gap-4 align-middle  justify-start border-gray-300  border-[1px] rounded-2xl p-3 lg:w-60 ">
                   <div>
                     <img
                       className="block w-10 h-10 "
@@ -53,12 +54,12 @@ const OfferBanner = (props) => {
                           : CDN_URL + index?.info?.offerLogo
                       }
                       alt=""
-                      // key={item?.id}
+                      key={index?.info?.resId}
                     />
                   </div>
-                  <div className="text-xs font-bold">
-                    <p>{index?.info?.header}</p>
-                    <p className="text-xs text-gray-500">
+                  <div className="text-xs ">
+                    <p className="font-extrabold">{index?.info?.header}</p>
+                    <p className="text-xs text-gray-500 font-bold">
                       {index?.info?.couponCode
                         ? index?.info?.couponCode
                         : index?.info?.description}

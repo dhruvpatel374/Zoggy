@@ -9,6 +9,7 @@ import Error from "./utils/ErrorPage/Error";
 import RestMenu from "./components/RestMenu";
 import { ImageProvider } from "./utils/ImageContext.js";
 import About from "./components/About";
+import { FilterProvider } from "./utils/FilterContext.js";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -25,9 +26,11 @@ const AppLayout = () => {
   return (
     <div>
       <Header />
-      <ImageProvider>
-        <Outlet />
-      </ImageProvider>
+      <FilterProvider>
+        <ImageProvider>
+          <Outlet />
+        </ImageProvider>
+      </FilterProvider>
       <Footer />
     </div>
   );

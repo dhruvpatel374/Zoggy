@@ -2,9 +2,11 @@ import { useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 import { City } from "../utils/constant";
 import clsx from "clsx";
+import useRest from "../utils/useRest";
 const Footer = () => {
   const [isCityOpen, setCity] = useState(true);
   // bg-[#E23744]
+
   return (
     <div className=" bg-orange-400 text-white ">
       <div className="grid  md:grid-cols-4 lg:grid-cols-4 grid-cols-1 gap-8 mt-5 pt-5 pl-10">

@@ -3,6 +3,7 @@ import {
   ArrowLongLeftIcon,
   ArrowLongRightIcon,
 } from "@heroicons/react/24/solid";
+
 export const usePrevNextButtons = (emblaApi) => {
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
@@ -37,31 +38,33 @@ export const usePrevNextButtons = (emblaApi) => {
   };
 };
 
-export const PrevButton = (props) => {
-  const { children, ...restProps } = props;
-
+export const PrevButton = ({ disabled, children, ...restProps }) => {
   return (
     <button
-      className="embla__button embla__button--prev bg-gray-100  rounded-md disabled:text-gray-300 "
+      className={`embla__button embla__button--prev rounded-md ${
+        disabled ? "bg-gray-300  cursor-not-allowed" : "bg-gray-100 "
+      }`}
       type="button"
+      disabled={disabled}
       {...restProps}
     >
-      <ArrowLongLeftIcon className="embla__button__svg  text-gray-700 " />
+      <ArrowLongLeftIcon className="embla__button__svg" />
       {children}
     </button>
   );
 };
 
-export const NextButton = (props) => {
-  const { children, ...restProps } = props;
-
+export const NextButton = ({ disabled, children, ...restProps }) => {
   return (
     <button
-      className="embla__button embla__button--next bg-gray-100  rounded-md disabled:text-gray-300"
+      className={`embla__button embla__button--next rounded-md ${
+        disabled ? "bg-gray-300  cursor-not-allowed" : "bg-gray-100 "
+      }`}
       type="button"
+      disabled={disabled}
       {...restProps}
     >
-      <ArrowLongRightIcon className="embla__button__svg   text-gray-700 " />
+      <ArrowLongRightIcon className="embla__button__svg" />
       {children}
     </button>
   );

@@ -4,15 +4,30 @@ import { ChevronUpIcon, StarIcon } from "@heroicons/react/24/solid";
 import NonVeg from "../utils/images/Non-Veg.svg";
 import Veg from "../utils/images/Veg.svg";
 import BestSeller from "../utils/images/BestSeller.svg";
+import { useFilter } from "../utils/FilterContext";
 const RestaurantMenuItemMobile = ({ items }) => {
   const [showItems, setShowItems] = useState(false);
+  const { filter } = useFilter();
+  const filteredItems = items?.card?.card?.itemCards?.filter((item) => {
+    const isVeg = item?.card?.info?.itemAttribute?.vegClassifier === "VEG";
+    const isBestseller = item?.card?.info?.isBestseller; // This should be a boolean
+
+    return (
+      filter === "ALL" ||
+      (filter === "VEG" && isVeg) ||
+      (filter === "NON_VEG" && !isVeg) ||
+      (filter === "BESTSELLER" && isBestseller) // Show only bestsellers
+    );
+  });
   return (
     <>
       <div
         onClick={() => setShowItems(!showItems)}
         className="flex cursor-pointer justify-between items-center p-4 my-2 rounded-md bg-gray-50 select-none"
       >
-        <h3 className="text-lg font-semibold">{items.card.card.title}</h3>
+        <h3 className="text-lg font-semibold">
+          {items.card.card.title} ({filteredItems?.length || 0})
+        </h3>
         <button
           className={`transition-transform duration-300 ${
             showItems ? "rotate-180" : ""
@@ -24,8 +39,8 @@ const RestaurantMenuItemMobile = ({ items }) => {
 
       {showItems && (
         <ul className="p-4">
-          {items?.card?.card?.itemCards?.length > 0 ? (
-            items.card.card.itemCards.map((item, i) => {
+          {filteredItems?.length > 0 ? (
+            filteredItems?.map((item, i) => {
               const itemPrice =
                 item?.card?.info?.price || item?.card?.info?.defaultPrice;
 
