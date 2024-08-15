@@ -4,7 +4,8 @@ import RestCategoryMobile from "./RestCategoryMobile";
 import { MENU_API } from "../utils/constant";
 import axios from "axios";
 import { useFilter } from "../utils/FilterContext";
-
+import NonVeg from "../utils/images/Non-Veg.svg";
+import Veg from "../utils/images/Veg.svg";
 const RestMenuMobile = () => {
   const { resId } = useParams();
   const [restaurant, setRestaurant] = useState(null);
@@ -29,37 +30,41 @@ const RestMenuMobile = () => {
     setFilter("ALL");
   }, [resId, setFilter]);
   return (
-    <div className="container-md ">
-      <div className="flex justify-center space-x-4 mb-4">
+    <div>
+      <div className="flex flex-wrap justify-center items-center space-x-4 mb-4 mt-4">
         <button
           onClick={() => setFilter("ALL")}
-          className="bg-gray-200 p-2 rounded"
+          className="border-2 border-gray-500 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 hover:bg-gray-500 hover:text-white transition-colors duration-300"
         >
           All
         </button>
         <button
           onClick={() => setFilter("VEG")}
-          className="bg-green-200 p-2 rounded"
+          className="border-2 border-gray-500 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 hover:bg-gray-500 hover:text-white transition-colors duration-300 flex items-center gap-1"
         >
+          <img src={Veg} alt="Veg" className="w-4 h-4" />
           Veg
         </button>
         <button
           onClick={() => setFilter("NON_VEG")}
-          className="bg-red-200 p-2 rounded"
+          className="border-2 border-gray-500 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 hover:bg-gray-500 hover:text-white transition-colors duration-300 flex items-center gap-1"
         >
+          <img src={NonVeg} alt="Non-Veg" className="w-4 h-4" />
           Non-Veg
         </button>
         <button
           onClick={() => setFilter("BESTSELLER")}
-          className="bg-yellow-200 p-2 rounded"
+          className="border-2 border-gray-500 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 hover:bg-gray-500 hover:text-white transition-colors duration-300"
         >
           Bestseller
         </button>
       </div>
-      <RestCategoryMobile
-        restaurant={restaurant}
-        // restaurant?.data?.cards[2]?.card?.card?.info
-      />
+      <div className="container-md ">
+        <RestCategoryMobile
+          restaurant={restaurant}
+          // restaurant?.data?.cards[2]?.card?.card?.info
+        />
+      </div>
     </div>
   );
 };

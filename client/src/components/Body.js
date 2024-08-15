@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import OfflineError from "../utils/ErrorPage/OfflineError";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-
 import Banner from "./Banner";
 import useRest from "../utils/useRest";
 import ShimmerBanner from "../utils/shimmer/ShimmerBanner";

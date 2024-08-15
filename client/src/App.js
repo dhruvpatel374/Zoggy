@@ -10,6 +10,7 @@ import RestMenu from "./components/RestMenu";
 import { ImageProvider } from "./utils/ImageContext.js";
 import About from "./components/About";
 import { FilterProvider } from "./utils/FilterContext.js";
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -26,11 +27,13 @@ const AppLayout = () => {
   return (
     <div>
       <Header />
+
       <FilterProvider>
         <ImageProvider>
           <Outlet />
         </ImageProvider>
       </FilterProvider>
+
       <Footer />
     </div>
   );
@@ -43,6 +46,10 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/restaurant",
         element: <Body />,
       },
       { path: "/contact", element: <ContactUs /> },

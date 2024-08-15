@@ -5,6 +5,9 @@ import ShimmerRestMenu from "../utils/shimmer/ShimmerRestMenu";
 import { useImage } from "../utils/ImageContext.js";
 import { useEffect } from "react";
 import { useFilter } from "../utils/FilterContext.js";
+import NonVeg from "../utils/images/Non-Veg.svg";
+import Veg from "../utils/images/Veg.svg";
+import BestSeller from "../utils/images/BestSeller.svg";
 const RestMenuCard = () => {
   const { resId } = useParams();
 
@@ -43,30 +46,32 @@ const RestMenuCard = () => {
   // console.log(categories);
   return (
     <div className="mt-4">
-      <div className="flex justify-center space-x-4 mb-4">
+      <div className="flex flex-wrap justify-center space-x-4 mb-4 mt-4">
         <button
           onClick={() => setFilter("ALL")}
-          className="bg-gray-200 p-2 rounded"
+          className="border-2 border-gray-500 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 hover:bg-gray-500 hover:text-white transition-colors duration-300"
         >
           All
         </button>
         <button
           onClick={() => setFilter("VEG")}
-          className="bg-green-200 p-2 rounded"
+          className="border-2 border-gray-500 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 hover:bg-gray-500 hover:text-white transition-colors duration-300 flex items-center gap-1"
         >
+          <img src={Veg} alt="Veg" className="w-4 h-4" />
           Veg
         </button>
         <button
           onClick={() => setFilter("NON_VEG")}
-          className="bg-red-200 p-2 rounded"
+          className="border-2 border-gray-500 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 hover:bg-gray-500 hover:text-white transition-colors duration-300 flex items-center gap-1"
         >
+          <img src={NonVeg} alt="Non-Veg" className="w-4 h-4" />
           Non-Veg
         </button>
         <button
           onClick={() => setFilter("BESTSELLER")}
-          className="bg-yellow-200 p-2 rounded"
+          className="border-2 border-gray-500 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 hover:bg-gray-500 hover:text-white transition-colors duration-300"
         >
-          Bestseller
+          <img src={BestSeller} />
         </button>
       </div>
       <div>

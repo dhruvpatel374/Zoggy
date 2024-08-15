@@ -9,6 +9,7 @@ import ShimmerRestaurantInfo from "../utils/shimmer/ShimmerRestInfo";
 import RestMenuMobile from "./RestMenuMobile";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import OfflineError from "../utils/ErrorPage/OfflineError";
+import BreadCrumbs from "../utils/BreadCrumbs";
 const RestMenu = () => {
   const { resId } = useParams();
   const [restaurant, setRestaurant] = useState(null);
@@ -35,10 +36,12 @@ const RestMenu = () => {
   }
   return (
     <div className="container-md   m-8  md:w-6/12 md:m-auto ">
+      <BreadCrumbs />
       {isLoading ? (
         <ShimmerRestaurantInfo />
       ) : (
         <>
+          {/* <ShimmerRestaurantInfo /> */}
           <RestMenuInfo
             info={restaurant?.data?.cards[2]?.card?.card?.info}
             data={restaurant?.data}

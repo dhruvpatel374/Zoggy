@@ -73,10 +73,21 @@ const RestMenuItem = (data) => {
                   </span>
                 </div>
               )}
-              <p className="text-xs font-semibold">
-                ₹
-                {item.card.info.price / 100 ||
-                  item.card.info.defaultPrice / 100}
+              <p className="text-xs font-semibold flex gap-1">
+                {item.card.info.price && item.card.info.finalPrice ? (
+                  <>
+                    <p className="line-through text-gray-500">
+                      ₹{item.card.info.price / 100}
+                    </p>
+                    <p className="  ">₹{item.card.info.finalPrice / 100}</p>
+                  </>
+                ) : (
+                  <p>
+                    ₹{" "}
+                    {item.card.info.price / 100 ||
+                      item.card.info.defaultPrice / 100}
+                  </p>
+                )}
               </p>
               <p className="text-xs hidden md:block">
                 {item?.card?.info?.description}

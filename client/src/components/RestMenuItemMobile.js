@@ -5,9 +5,11 @@ import NonVeg from "../utils/images/Non-Veg.svg";
 import Veg from "../utils/images/Veg.svg";
 import BestSeller from "../utils/images/BestSeller.svg";
 import { useFilter } from "../utils/FilterContext";
+import { useImage } from "../utils/ImageContext";
 const RestaurantMenuItemMobile = ({ items }) => {
   const [showItems, setShowItems] = useState(false);
   const { filter } = useFilter();
+  const { image } = useImage();
   const filteredItems = items?.card?.card?.itemCards?.filter((item) => {
     const isVeg = item?.card?.info?.itemAttribute?.vegClassifier === "VEG";
     const isBestseller = item?.card?.info?.isBestseller; // This should be a boolean
@@ -87,7 +89,24 @@ const RestaurantMenuItemMobile = ({ items }) => {
                         </span>
                       </p>
                     )}
-                    <p className="text-xs font-semibold">₹{itemPrice / 100}</p>
+                    <p className="text-xs font-semibold flex gap-1">
+                      {item.card.info.price && item.card.info.finalPrice ? (
+                        <>
+                          <p className="line-through text-gray-500">
+                            ₹{item.card.info.price / 100}
+                          </p>
+                          <p className="  ">
+                            ₹{item.card.info.finalPrice / 100}
+                          </p>
+                        </>
+                      ) : (
+                        <p>
+                          ₹{" "}
+                          {item.card.info.price / 100 ||
+                            item.card.info.defaultPrice / 100}
+                        </p>
+                      )}
+                    </p>
                     <p className="text-xs hidden md:block">
                       {item?.card?.info?.description}
                     </p>
@@ -96,8 +115,12 @@ const RestaurantMenuItemMobile = ({ items }) => {
                   <div className="w-full basis-4/12 relative">
                     <img
                       className="w-full h-32 aspect-video object-cover rounded-md"
-                      src={CDN_URL + item?.card?.info?.imageId}
-                      alt=""
+                      src={
+                        item?.card?.info?.imageId
+                          ? CDN_URL + item.card.info.imageId
+                          : CDN_URL + image
+                      }
+                      alt="No Image Available"
                     />
                     <button className="bg-white text-orange-500 hover:bg-orange-500 hover:text-white font-bold p-2 px-6 rounded-md absolute shadow-md left-[50%] -bottom-5 -translate-x-[50%]">
                       ADD
