@@ -6,11 +6,14 @@ import axios from "axios";
 import { useFilter } from "../utils/FilterContext";
 import NonVeg from "../utils/images/Non-Veg.svg";
 import Veg from "../utils/images/Veg.svg";
+import BestSeller from "../utils/images/BestSeller.svg";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 const RestMenuMobile = () => {
   const { resId } = useParams();
   const [restaurant, setRestaurant] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const { filter, setFilter } = useFilter();
+  const [activeFilter, setActiveFilter] = useState("ALL");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,35 +31,74 @@ const RestMenuMobile = () => {
   }, [resId]);
   useEffect(() => {
     setFilter("ALL");
+    setActiveFilter("ALL");
   }, [resId, setFilter]);
+
+  const handleFilterClick = (filterType) => {
+    if (activeFilter === filterType) {
+      // If the same filter is clicked again, reset to "ALL"
+      setFilter("ALL");
+      setActiveFilter("ALL");
+    } else {
+      // Set the new filter
+      setFilter(filterType);
+      setActiveFilter(filterType);
+    }
+  };
+
   return (
     <div>
-      <div className="flex flex-wrap justify-center items-center space-x-4 mb-4 mt-4">
+      <div className="flex flex-wrap justify-center space-x-4 mb-4 mt-4">
         <button
-          onClick={() => setFilter("ALL")}
-          className="border-2 border-gray-500 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 hover:bg-gray-500 hover:text-white transition-colors duration-300"
+          onClick={() => handleFilterClick("ALL")}
+          className={`border-2 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 transition-colors duration-300 flex justify-center items-center gap-4 ${
+            activeFilter === "ALL"
+              ? "bg-gray-300 border-gray-500 text-gray-700"
+              : "border-gray-500 text-gray-700 hover:bg-gray-200"
+          }`}
         >
-          All
+          All {activeFilter === "ALL" && <XMarkIcon className="w-4 h-4" />}
         </button>
         <button
-          onClick={() => setFilter("VEG")}
-          className="border-2 border-gray-500 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 hover:bg-gray-500 hover:text-white transition-colors duration-300 flex items-center gap-1"
+          onClick={() => handleFilterClick("VEG")}
+          className={`border-2 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 transition-colors duration-300 flex justify-center items-center gap-2 ${
+            activeFilter === "VEG"
+              ? "bg-gray-300 border-gray-500 text-gray-700"
+              : "border-gray-500 text-gray-700 hover:bg-gray-200"
+          }`}
         >
-          <img src={Veg} alt="Veg" className="w-4 h-4" />
-          Veg
+          <div className="flex justify-center items-center gap-2">
+            <img src={Veg} alt="Veg" className="w-4 h-4" />
+            Veg
+          </div>
+          {activeFilter === "VEG" && <XMarkIcon className="w-4 h-4" />}
         </button>
         <button
-          onClick={() => setFilter("NON_VEG")}
-          className="border-2 border-gray-500 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 hover:bg-gray-500 hover:text-white transition-colors duration-300 flex items-center gap-1"
+          onClick={() => handleFilterClick("NON_VEG")}
+          className={`border-2 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 transition-colors duration-300 flex justify-center items-center gap-2 ${
+            activeFilter === "NON_VEG"
+              ? "bg-gray-300 border-gray-500 text-gray-700"
+              : "border-gray-500 text-gray-700 hover:bg-gray-200"
+          }`}
         >
-          <img src={NonVeg} alt="Non-Veg" className="w-4 h-4" />
-          Non-Veg
+          <div className="flex justify-center items-center gap-2">
+            <img src={NonVeg} alt="Non-Veg" className="w-4 h-4" />
+            Non-Veg
+          </div>
+          {activeFilter === "NON_VEG" && <XMarkIcon className="w-4 h-4" />}
         </button>
         <button
-          onClick={() => setFilter("BESTSELLER")}
-          className="border-2 border-gray-500 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 text-gray-700 hover:bg-gray-500 hover:text-white transition-colors duration-300"
+          onClick={() => handleFilterClick("BESTSELLER")}
+          className={`border-2 rounded-2xl p-2 mr-4 mb-4 sm:mb-0 transition-colors duration-300 flex justify-center items-center gap-2 ${
+            activeFilter === "BESTSELLER"
+              ? "bg-gray-300 border-gray-500 text-gray-700"
+              : "border-gray-500 text-gray-700 hover:bg-gray-200"
+          }`}
         >
-          Bestseller
+          <div className="flex justify-center items-center gap-2">
+            <img src={BestSeller} alt="Bestseller" />
+          </div>
+          {activeFilter === "BESTSELLER" && <XMarkIcon className="w-4 h-4" />}
         </button>
       </div>
       <div className="container-md ">
