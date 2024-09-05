@@ -6,11 +6,21 @@ import BestSeller from "../utils/images/BestSeller.svg";
 import { useState, useEffect } from "react";
 import { useImage } from "../utils/ImageContext.js";
 import { useFilter } from "../utils/FilterContext.js";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/cartSlice.js";
+import toast, { Toaster } from "react-hot-toast";
+
 const RestMenuItem = (data) => {
   // const category = items?.data;
   const { filter } = useFilter();
   const [menuItems, setMenuItems] = useState([]);
   const { image } = useImage();
+  const dispatch = useDispatch();
+  const handleAddItem = (item) => {
+    dispatch(addToCart(item));
+    toast.success("Added to cart!");
+  };
+
   useEffect(() => {
     // Assuming you fetch data asynchronously and set it to items.data
     setMenuItems(data?.data);
@@ -35,6 +45,7 @@ const RestMenuItem = (data) => {
   }
   return (
     <div>
+      <Toaster />
       {filteredItems.map((item, i) => (
         <ul className="p-4" key={i}>
           {/* {item?.card?.card?.itemCards?.map((item, i) => {
@@ -104,7 +115,10 @@ const RestMenuItem = (data) => {
                 }
                 alt="No Image Available"
               />
-              <button className="bg-white text-orange-500 hover:bg-orange-500 hover:text-white font-bold p-2 px-6 rounded-md absolute shadow-md left-[50%] -bottom-5 -translate-x-[50%]">
+              <button
+                className="bg-white text-orange-500 hover:bg-orange-500 hover:text-white font-bold p-2 px-6 rounded-md absolute shadow-md left-[50%] -bottom-5 -translate-x-[50%]"
+                onClick={() => handleAddItem(item)}
+              >
                 ADD
               </button>
             </div>

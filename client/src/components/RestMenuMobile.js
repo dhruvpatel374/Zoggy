@@ -8,12 +8,35 @@ import NonVeg from "../utils/images/Non-Veg.svg";
 import Veg from "../utils/images/Veg.svg";
 import BestSeller from "../utils/images/BestSeller.svg";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import { useImage } from "../utils/ImageContext";
+import useRestMenu from "../utils/useRestMenu";
 const RestMenuMobile = () => {
   const { resId } = useParams();
   const [restaurant, setRestaurant] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const resInfo = useRestMenu(resId);
+  const { image, setImage } = useImage();
   const { filter, setFilter } = useFilter();
   const [activeFilter, setActiveFilter] = useState("ALL");
+  useEffect(() => {
+    if (resInfo) {
+      const findCloudinaryImageId = () => {
+        // Loop through the cards array
+        for (let i = 0; i < resInfo.cards.length; i++) {
+          const cloudinaryImageId =
+            resInfo.cards[i]?.card?.card?.info?.cloudinaryImageId;
+          if (cloudinaryImageId) {
+            return cloudinaryImageId; // Return the first found image ID
+          }
+        }
+        return null; // Return null if no image ID is found
+      };
+
+      const newImage = findCloudinaryImageId();
+      setImage(newImage); // Save the image in context
+    }
+  }, [resInfo, setImage]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {

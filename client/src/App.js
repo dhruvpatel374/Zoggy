@@ -10,13 +10,15 @@ import RestMenu from "./components/RestMenu";
 import { ImageProvider } from "./utils/ImageContext.js";
 import About from "./components/About";
 import { FilterProvider } from "./utils/FilterContext.js";
-
+import { Provider } from "react-redux";
 import {
   createBrowserRouter,
   RouterProvider,
   Outlet,
   useLocation,
 } from "react-router-dom";
+import appStore from "./store/appStore.js";
+import Cart from "./components/Cart.js";
 
 const AppLayout = () => {
   const { pathname } = useLocation();
@@ -26,15 +28,17 @@ const AppLayout = () => {
   }, [pathname]);
   return (
     <div>
-      <Header />
+      <Provider store={appStore}>
+        <Header />
 
-      <FilterProvider>
-        <ImageProvider>
-          <Outlet />
-        </ImageProvider>
-      </FilterProvider>
+        <FilterProvider>
+          <ImageProvider>
+            <Outlet />
+          </ImageProvider>
+        </FilterProvider>
 
-      <Footer />
+        <Footer />
+      </Provider>
     </div>
   );
 };
@@ -61,6 +65,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
     errorElement: <Error />,

@@ -10,10 +10,13 @@ import {
 } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 const Header = () => {
   const [isSideMenuOpen, setMenu] = useState(false);
   const [loginbtn, setLoginBtn] = useState("Login");
+  const cartItem = useSelector((store) => store.cart.items);
+  console.log(cartItem);
+
   return (
     <nav className="sticky top-0 z-50 bg-white flex justify-between px-8 items-center py-6 shadow-sm  ">
       <section className="flex items-center gap-4">
@@ -60,7 +63,7 @@ const Header = () => {
             >
               <ShoppingBagIcon className="w-4 h-4 text-gray-700" /> Cart
               <span className="absolute top-5 right-[7rem] bg-orange-500 text-white flex justify-center items-center w-5 h-5 text-xs rounded-full">
-                0
+                {cartItem.length}
               </span>
             </Link>
           </li>
@@ -134,7 +137,7 @@ const Header = () => {
               >
                 <ShoppingBagIcon className="w-4 h-4 text-gray-700" /> Cart
                 <span className="absolute top-[17.5rem] right-20 bg-orange-500 text-white flex justify-center items-center w-5 h-5 text-xs rounded-full">
-                  0
+                  {cartItem.length}
                 </span>
               </Link>
             </li>

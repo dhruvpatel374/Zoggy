@@ -21,7 +21,19 @@ const RestMenuCard = () => {
 
   useEffect(() => {
     if (resInfo) {
-      const newImage = resInfo?.cards[2]?.card?.card?.info?.cloudinaryImageId;
+      const findCloudinaryImageId = () => {
+        // Loop through the cards array
+        for (let i = 0; i < resInfo.cards.length; i++) {
+          const cloudinaryImageId =
+            resInfo.cards[i]?.card?.card?.info?.cloudinaryImageId;
+          if (cloudinaryImageId) {
+            return cloudinaryImageId; // Return the first found image ID
+          }
+        }
+        return null; // Return null if no image ID is found
+      };
+
+      const newImage = findCloudinaryImageId();
       setImage(newImage); // Save the image in context
     }
   }, [resInfo, setImage]);

@@ -6,10 +6,18 @@ import Veg from "../utils/images/Veg.svg";
 import BestSeller from "../utils/images/BestSeller.svg";
 import { useFilter } from "../utils/FilterContext";
 import { useImage } from "../utils/ImageContext";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/cartSlice";
+import toast, { Toaster } from "react-hot-toast";
 const RestaurantMenuItemMobile = ({ items }) => {
   const [showItems, setShowItems] = useState(false);
   const { filter } = useFilter();
   const { image } = useImage();
+  const dispatch = useDispatch();
+  const handleAddItem = (item) => {
+    dispatch(addToCart(item));
+    toast.success("Added to cart!");
+  };
   const filteredItems = items?.card?.card?.itemCards?.filter((item) => {
     const isVeg = item?.card?.info?.itemAttribute?.vegClassifier === "VEG";
     const isBestseller = item?.card?.info?.isBestseller; // This should be a boolean
@@ -38,7 +46,7 @@ const RestaurantMenuItemMobile = ({ items }) => {
           <ChevronUpIcon className="w-6 h-6" />
         </button>
       </div>
-
+      <Toaster />
       {showItems && (
         <ul className="p-4">
           {filteredItems?.length > 0 ? (
@@ -122,7 +130,10 @@ const RestaurantMenuItemMobile = ({ items }) => {
                       }
                       alt="No Image Available"
                     />
-                    <button className="bg-white text-orange-500 hover:bg-orange-500 hover:text-white font-bold p-2 px-6 rounded-md absolute shadow-md left-[50%] -bottom-5 -translate-x-[50%]">
+                    <button
+                      className="bg-white text-orange-500 hover:bg-orange-500 hover:text-white font-bold p-2 px-6 rounded-md absolute shadow-md left-[50%] -bottom-5 -translate-x-[50%]"
+                      onClick={() => handleAddItem(item)}
+                    >
                       ADD
                     </button>
                   </div>
