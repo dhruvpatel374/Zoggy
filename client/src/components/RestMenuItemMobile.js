@@ -46,7 +46,14 @@ const RestaurantMenuItemMobile = ({ items }) => {
           <ChevronUpIcon className="w-6 h-6" />
         </button>
       </div>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          style: {
+            boxShadow: "none", // Remove shadow
+          },
+        }}
+      />
+
       {showItems && (
         <ul className="p-4">
           {filteredItems?.length > 0 ? (
@@ -97,7 +104,7 @@ const RestaurantMenuItemMobile = ({ items }) => {
                         </span>
                       </p>
                     )}
-                    <p className="text-xs font-semibold flex gap-1">
+                    <h1 className="text-xs font-semibold flex gap-1">
                       {item.card.info.price && item.card.info.finalPrice ? (
                         <>
                           <p className="line-through text-gray-500">
@@ -114,7 +121,7 @@ const RestaurantMenuItemMobile = ({ items }) => {
                             item.card.info.defaultPrice / 100}
                         </p>
                       )}
-                    </p>
+                    </h1>
                     <p className="text-xs hidden md:block">
                       {item?.card?.info?.description}
                     </p>

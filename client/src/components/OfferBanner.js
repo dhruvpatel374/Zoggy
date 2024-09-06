@@ -42,7 +42,7 @@ const OfferBanner = (props) => {
           key={data?.info?.resId}
         >
           {data?.map((index, i) => (
-            <div className="embla__slide1  " key={index?.info?.resId}>
+            <div className="embla__slide1  " key={`${index?.info?.resId}-${i}`}>
               <div className="embla__slide__number1  ">
                 <div className="flex gap-4 align-middle  justify-start border-gray-300  border-[1px] rounded-2xl p-3 lg:w-60 ">
                   <div>

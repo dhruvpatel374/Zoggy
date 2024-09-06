@@ -10,8 +10,6 @@ const RestMenuInfo = ({ info, data }) => {
   const OPTIONS = { dragFree: true };
   const SLIDE_COUNT = resinfo?.length;
   const SLIDES = resinfo.length;
-  console.log(info);
-  console.log(resinfo);
 
   return (
     <div className="border-b border-dashed ">

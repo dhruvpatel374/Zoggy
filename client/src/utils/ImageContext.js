@@ -6,7 +6,6 @@ const ImageContext = createContext();
 // Create a provider component
 export const ImageProvider = ({ children }) => {
   const [image, setImage] = useState(null);
-  console.log(image);
 
   return (
     <ImageContext.Provider value={{ image, setImage }}>

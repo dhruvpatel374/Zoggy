@@ -44,7 +44,7 @@ const CartItemList = () => {
             <img
               className="w-full h-full md:h-auto object-cover block rounded-md aspect-square"
               src={CDN_URL + item?.item?.card?.info?.imageId}
-              alt=""
+              alt="Image Not Found"
             />
           </div>
           <div className="basis-9/12">
