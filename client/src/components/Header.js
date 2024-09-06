@@ -64,7 +64,7 @@ const Header = () => {
               className="p-2 px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
             >
               <ShoppingBagIcon className="w-4 h-4 text-gray-700" /> Cart
-              <span className="absolute top-[-10px] right-[-10px] bg-orange-500 text-white flex justify-center items-center w-5 h-5 text-xs rounded-full">
+              <span className="absolute top-[-10px] right-[-10px] bg-orange-400 text-white flex justify-center items-center w-5 h-5 text-xs rounded-full">
                 {cartItem.length}
               </span>
             </Link>
@@ -133,7 +133,7 @@ const Header = () => {
                 className="p-4 px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
               >
                 <ShoppingBagIcon className="w-4 h-4 text-gray-700" /> Cart
-                <span className="absolute top-[17.5rem] right-20 bg-orange-500 text-white flex justify-center items-center w-5 h-5 text-xs rounded-full">
+                <span className="absolute top-[17.5rem] right-20 bg-orange-400 text-white flex justify-center items-center w-5 h-5 text-xs rounded-full">
                   {cartItem.length}
                 </span>
               </Link>

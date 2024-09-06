@@ -72,12 +72,12 @@ export const selectTotalPrice = ({ cart }) => {
 
 // Function to get effective price
 const getEffectivePrice = (itemInfo) => {
-  if (itemInfo?.defaultPrice) {
-    return itemInfo.defaultPrice;
-  } else if (itemInfo?.finalPrice) {
+  if (itemInfo?.finalPrice) {
     return itemInfo.finalPrice;
   } else if (itemInfo?.price) {
-    return itemInfo.price;
+    return itemInfo.price; // Convert from paise to rupees
+  } else if (itemInfo?.defaultPrice) {
+    return itemInfo.defaultPrice;
   }
 };
 

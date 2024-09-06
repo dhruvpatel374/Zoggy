@@ -7,7 +7,7 @@ const Cart = () => {
   const cartItems = useSelector(selectItemsInCart);
 
   return (
-    <div className="container-max py-8 pb-16">
+    <div className="container-max  pb-16">
       <h1 className="text-2xl my-4 font-semibold">Cart</h1>
 
       {/* cart details */}

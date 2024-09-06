@@ -24,12 +24,12 @@ const CartItemList = () => {
   }
 
   const getEffectivePrice = (itemInfo) => {
-    if (itemInfo?.defaultPrice) {
-      return itemInfo.defaultPrice / 100;
-    } else if (itemInfo?.finalPrice) {
+    if (itemInfo?.finalPrice) {
       return itemInfo.finalPrice / 100;
     } else if (itemInfo?.price) {
       return itemInfo.price / 100; // Convert from paise to rupees
+    } else if (itemInfo?.defaultPrice) {
+      return itemInfo.defaultPrice / 100;
     }
   };
 
@@ -38,7 +38,7 @@ const CartItemList = () => {
       {cartItems.map((item) => (
         <li
           key={item?.item?.card?.info?.id}
-          className="flex gap-4 justify-between max-w-[600px] my-4"
+          className="flex gap-4 justify-between max-w-[600px] my-4 border-b-2 border-dashed border-gray-300 pb-4"
         >
           <div className="basis-3/12">
             <img
@@ -58,13 +58,24 @@ const CartItemList = () => {
                 : item?.item?.card?.info?.description}
             </p>
 
-            <p className="my-2 space-x-1">
-              <span className="font-semibold">
-                ₹
-                {parseFloat(
-                  (
-                    item?.quantity * getEffectivePrice(item?.item?.card?.info)
-                  ).toFixed(2)
+            <p className="my-2 space-x-1 flex gap-1">
+              <span className="font-semibold flex gap-1">
+                {item?.item?.card?.info?.price &&
+                item?.item?.card?.info?.finalPrice ? (
+                  <>
+                    <p className="line-through text-gray-500">
+                      ₹{item?.item?.card?.info?.price / 100}
+                    </p>
+                    <p className="  ">
+                      ₹{item?.item?.card?.info?.finalPrice / 100}
+                    </p>
+                  </>
+                ) : (
+                  <p>
+                    ₹{" "}
+                    {item?.item?.card?.info?.price / 100 ||
+                      item?.item?.card?.info?.defaultPrice / 100}
+                  </p>
                 )}
               </span>
               <span className="text-gray-800 font-normal">
