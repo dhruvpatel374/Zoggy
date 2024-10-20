@@ -22,7 +22,7 @@ function isMobileDevice(userAgent) {
 
 app.get("/", (req, res) => {
   res.send(
-    "<h1>For Swiggy Restaurant Card api go to /api/res and For menu api api/menu and add restaurantid </h1>"
+    "<h1>For Swiggy Restaurant Card api go to /api/res(For Mobile /api/mobileres) and For menu api api/menu and add restaurantid </h1>"
   );
 });
 
@@ -72,4 +72,27 @@ app.get("/api/menu", async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Proxy server running at http://localhost:${PORT}`);
+});
+app.get("/api/mobileres", async (req, res) => {
+  try {
+    const userAgent = req.headers["user-agent"];
+    const timestamp = Date.now();
+    const limit = 20;
+    const offset = 0;
+    const isMobile = isMobileDevice(userAgent);
+    const platform = isMobile ? "MOBILE_WEB_LISTING" : "DESKTOP_WEB_LISTING";
+    const url =
+      "https://www.swiggy.com/mapi/homepage/getCards?lat=23.102477&lng=72.55750069999999";
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": userAgent,
+        Accept: "application/json",
+      },
+    });
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error("Error proxying request: " + error);
+    res.status(500).json({ error: "Invertal server error" });
+  }
 });

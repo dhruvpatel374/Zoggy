@@ -55,7 +55,7 @@ const Header = () => {
               to="/contact"
               className="p-2 px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
             >
-              <PhoneIcon className="w-4 h-4 text-gray-700" /> Contact
+              <PhoneIcon className="w-4 h-4  text-gray-700" /> Contact
             </Link>
           </li>
           <li className="relative">

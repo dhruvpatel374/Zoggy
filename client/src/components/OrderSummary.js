@@ -13,6 +13,8 @@ const OrderSummary = () => {
 
   // Function to handle order placement
   const handlePlaceOrder = () => {
+    const orderDate = new Date().toLocaleDateString();
+    const orderTime = new Date().toLocaleTimeString();
     const orderDetails = {
       items: cartItems.map((item) => ({
         id: item.item.card.info.id,
@@ -25,7 +27,12 @@ const OrderSummary = () => {
       totalPrice: parseFloat(price.toFixed(2)),
       discount: parseFloat(discount.toFixed(2)),
       deliveryCharges: parseFloat(deliveryCharges.toFixed(2)),
-      totalQuantity: cartItems.reduce((total, item) => total + item.quantity),
+      totalQuantity: cartItems.reduce(
+        (total, item) => total + item.quantity,
+        0
+      ),
+      orderDate: orderDate,
+      orderTime: orderTime,
     };
     toast.success("Your Order Data is pirnted in console ");
     console.log("Order Data:-", orderDetails);

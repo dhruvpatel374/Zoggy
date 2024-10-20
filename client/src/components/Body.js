@@ -1,5 +1,5 @@
 import RestCard from "./RestCard";
-import { SWIGGY_API } from "../utils/constant";
+import { SWIGGY_API, SWIGGY_API_MOBILE } from "../utils/constant";
 import { useState, useEffect } from "react";
 import ShimmerRestCard from "../utils/shimmer/ShimmerRestCard";
 import { Link } from "react-router-dom";
@@ -9,11 +9,11 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Banner from "./Banner";
 import useRest from "../utils/useRest";
 import ShimmerBanner from "../utils/shimmer/ShimmerBanner";
+import { isMobile } from "react-device-detect";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [originalListOfRestaurant, setOriginalListOfRestaurant] = useState([]);
-  // const [ratingSelected, setRatingSelected] = useState(true);
   const [deliveryTimeSelected, setDeliveryTimeSelected] = useState(true);
   const [ratingHtoLSelected, setRatingHtoLSelected] = useState(true);
   const [searchText, setSearchText] = useState("");
@@ -23,41 +23,58 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  const OPTIONS = { loop: true };
-  const SLIDES =
-    resinfo?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info
-      ?.length;
 
   const fetchData = async () => {
-    const data = await fetch(SWIGGY_API);
-    const json = await data.json();
-    async function checkJsonData(jsonData) {
-      for (let i = 0; i < jsonData?.data?.cards.length; i++) {
-        let checkData =
-          jsonData?.data?.cards[i]?.card?.card?.gridElements?.infoWithStyle
-            ?.restaurants;
+    // Use different API based on device type
+    const apiUrl = isMobile ? SWIGGY_API_MOBILE : SWIGGY_API;
 
-        if (checkData !== undefined) {
-          return checkData;
-        }
+    try {
+      const data = await fetch(apiUrl);
+      const json = await data.json();
+
+      // Only call checkJsonData if not on mobile
+      if (!isMobile) {
+        const resData = await checkJsonData(json);
+        setListOfRestaurant(resData);
+        setOriginalListOfRestaurant(resData);
+      } else {
+        // If on mobile, handle the data differently if needed
+        // You may want to directly set the data here or perform other operations
+        setListOfRestaurant(
+          json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle
+            ?.restaurants
+        ); // Adjust as needed for mobile
+        setOriginalListOfRestaurant(
+          json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle
+            ?.restaurants
+        ); // Adjust as needed for mobile
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const checkJsonData = async (jsonData) => {
+    for (let i = 0; i < jsonData?.data?.cards.length; i++) {
+      let checkData =
+        jsonData?.data?.cards[i]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants;
+
+      if (checkData !== undefined) {
+        return checkData;
       }
     }
-    const resData = await checkJsonData(json);
-    // console.log(json);
-    setListOfRestaurant(
-      // json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-      resData
-    );
-    setOriginalListOfRestaurant(resData);
+    return []; // Return an empty array if no data found
   };
+
   const onlineStatus = useOnlineStatus();
   if (onlineStatus === false) {
     return <OfflineError />;
   }
-  if (originalListOfRestaurant.length === 0) {
+
+  if (originalListOfRestaurant?.length === 0) {
     return <ShimmerRestCard />;
   }
-
   return (
     <div>
       <div className="container-max  ">
