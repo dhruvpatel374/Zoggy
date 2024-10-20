@@ -4,8 +4,8 @@ export const CDN_URL =
 export const SWIGGY_API = "https://zoggy-server.vercel.app/api/res";
 // ("http://localhost:3001/api/res");
 export const SWIGGY_API_MOBILE =
-  // "https://zoggy-server.vercel.app/api/res";
-  "http://localhost:3001/api/mobileres";
+  "https://zoggy-server.vercel.app/api/mobileres";
+  // "http://localhost:3001/api/mobileres";
 export const MENU_API = "https://zoggy-server.vercel.app/api/menu";
 // "http://localhost:3001/api/menu";
 export const City = [
